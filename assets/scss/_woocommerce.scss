@@ -226,3 +226,613 @@
 .c-store-return {
   margin: $space-3 0 $space-4;
 }
+
+// ==========================================================================
+// Checkout (WooCommerce Checkout block) — CHECKOUT_FIXES.md frame 72g.
+// Wording and the plan line come from inc/woocommerce-checkout.php; this is
+// layout and type. Nothing below 14px; fields 46px tall with 16px text.
+// ==========================================================================
+$co-hairline: rgba($color-navy, 0.22);
+$co-slate: $color-navy-400;
+
+.woocommerce-checkout .c-content__inner {
+  max-width: 600px;
+  margin-inline: auto;
+}
+
+.c-checkout-lead {
+  margin: -0.75rem 0 1.75rem;
+  font-size: 16px;
+  color: $color-navy-700;
+}
+
+.wp-block-woocommerce-checkout {
+  font-family: $font-body;
+  color: $color-navy;
+  font-size: 16px;
+  padding-top: 0;
+
+  // One order summary: the one above the button. The collapsible copy at
+  // the top is the sidebar, which the narrow layout moves up.
+  .wc-block-components-sidebar-layout:not(.is-large) .wc-block-checkout__sidebar {
+    display: none;
+  }
+
+  .wc-block-components-main {
+    padding: 0;
+  }
+
+  // ── Express pay (Apple Pay / Google Pay) and the divider ────────────────
+  .wc-block-components-express-payment__title-container {
+    display: none;
+  }
+
+  .wc-block-components-express-payment--checkout .wc-block-components-express-payment__content {
+    border: 0;
+    padding: 0;
+  }
+
+  .wc-block-components-express-payment-continue-rule {
+    font-size: 14px;
+    text-transform: none;
+    color: $co-slate;
+    margin: 20px 0 8px;
+
+    &::before,
+    &::after {
+      border-color: $co-hairline;
+    }
+  }
+
+  // ── Sections ─────────────────────────────────────────────────────────────
+  .wc-block-components-checkout-step {
+    margin: 0 0 28px;
+    padding: 0;
+
+    &::after {
+      display: none;
+    }
+  }
+
+  .wc-block-components-checkout-step__heading {
+    margin: 0 0 4px;
+  }
+
+  .wc-block-components-checkout-step__title {
+    font-family: $font-body;
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: 0;
+    text-transform: none;
+    color: $color-navy;
+  }
+
+  .wc-block-components-checkout-step__description {
+    font-size: 14px;
+  }
+
+  // ── Labels above fields (not floating inside them) ───────────────────────
+  .wc-block-components-address-form {
+    row-gap: 14px;
+  }
+
+  .wc-block-components-form .wc-block-components-text-input,
+  .wc-block-components-form .wc-block-components-text-input.is-active {
+    display: flex;
+    flex-direction: column;
+    margin-top: 14px;
+
+    label {
+      order: -1;
+      position: static;
+      transform: none;
+      margin: 0 0 6px;
+      // The site's form-label style (as on the contact form): condensed caps.
+      font-family: $font-heading;
+      -webkit-font-smoothing: antialiased;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1.3;
+      color: $color-navy;
+      white-space: normal;
+    }
+
+    input[type],
+    input[type]:focus {
+      height: 46px;
+      min-height: 46px;
+      padding: 0 13px;
+      font-size: 16px;
+      line-height: 1.2;
+      color: $color-navy;
+      background: $color-white;
+      border: 1px solid $co-hairline;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    input[type]:focus {
+      border-color: $color-navy;
+      outline: 1px solid $color-navy;
+      outline-offset: 0;
+    }
+  }
+
+  .wc-block-components-address-form > .wc-block-components-text-input:first-child,
+  .wc-block-components-address-form__email {
+    margin-top: 8px;
+  }
+
+  .wc-blocks-components-select {
+    margin-top: 14px;
+
+    .wc-blocks-components-select__container {
+      display: flex;
+      flex-direction: column;
+      height: auto;
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .wc-blocks-components-select__label {
+      order: -1;
+      position: static;
+      transform: none;
+      margin: 0 0 6px;
+      // The site's form-label style (as on the contact form): condensed caps.
+      font-family: $font-heading;
+      -webkit-font-smoothing: antialiased;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1.3;
+      color: $color-navy;
+      background: transparent;
+    }
+
+    .wc-blocks-components-select__select {
+      height: 46px;
+      padding: 0 40px 0 13px;
+      font-size: 16px;
+      color: $color-navy;
+      background: $color-white;
+      border: 1px solid $co-hairline;
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .wc-blocks-components-select__select:focus {
+      border-color: $color-navy;
+      outline: 1px solid $color-navy;
+    }
+
+    .wc-blocks-components-select__expand {
+      top: auto;
+      bottom: 13px;
+      transform: none;
+    }
+  }
+
+  .wc-block-components-address-form__address_2-toggle {
+    margin-top: 10px;
+    font-size: 14px;
+    color: $color-navy-700;
+  }
+
+  .wc-block-components-validation-error,
+  .wc-block-components-checkbox__label,
+  .wc-block-components-radio-control__label,
+  .wc-block-components-radio-control__description,
+  .wc-block-components-address-card,
+  .wc-block-components-address-card__edit {
+    font-size: 14px;
+  }
+
+  // ── Payment: one method, so no radio row around the card fields ──────────
+  .wc-block-components-radio-control,
+  .wc-block-components-radio-control--highlight-checked::after,
+  .wc-block-components-radio-control-accordion-option {
+    border: 0 !important;
+    box-shadow: none !important;
+  }
+
+  .wc-block-components-radio-control:has(> .wc-block-components-radio-control-accordion-option:only-child)
+    .wc-block-components-radio-control__option {
+    display: none;
+  }
+
+  .wc-block-components-radio-control-accordion-content {
+    padding: 4px 0 0;
+  }
+
+  .wc-stripe-payment-method-instruction {
+    font-size: 14px;
+  }
+
+  // ── Order: fields, then summary, button, and the terms line under it ─────
+  .wc-block-checkout__form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .wc-block-checkout__actions {
+    order: 1;
+    margin: 0;
+  }
+
+  .wc-block-checkout__terms {
+    order: 2;
+    margin: 14px 0 0;
+    padding: 0;
+    border: 0;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.5;
+    color: $co-slate;
+
+    &::before {
+      display: none;
+    }
+
+    a {
+      color: $color-navy;
+      text-decoration: underline;
+    }
+  }
+
+  // ── Summary (above the button) ───────────────────────────────────────────
+  .checkout-order-summary-block-fill-wrapper {
+    border-top: 1px solid $co-hairline;
+    padding-top: 14px;
+    margin-bottom: 20px;
+
+    > .wc-block-components-checkout-step__heading {
+      display: none;
+    }
+  }
+
+  .checkout-order-summary-block-fill {
+    display: flex;
+    flex-direction: column;
+    border: 0;
+    padding: 0;
+
+    .wc-block-components-totals-wrapper {
+      border: 0;
+      padding: 0;
+    }
+
+    .wc-block-components-totals-item {
+      padding: 0;
+      font-size: 15px;
+    }
+
+    > .wp-block-woocommerce-checkout-order-summary-cart-items-block {
+      order: 1;
+    }
+
+    > .slot-wrapper {
+      order: 2;
+    }
+
+    > .wp-block-woocommerce-checkout-order-summary-totals-block {
+      order: 3;
+      border: 0;
+    }
+
+    > .wc-block-components-totals-wrapper:has(.wc-block-components-totals-footer-item) {
+      order: 4;
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid $co-hairline;
+    }
+
+    > .wp-block-woocommerce-checkout-order-summary-coupon-form-block {
+      order: 5;
+    }
+  }
+
+  // The plan line: "Crew plan · first month free ........ $0.00"
+  .checkout-order-summary-block-fill .wc-block-components-order-summary,
+  .checkout-order-summary-block-fill .wc-block-components-totals-coupon {
+    padding: 0;
+
+    .wc-block-components-order-summary-item {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 0;
+      font-size: 15px;
+    }
+
+    .wc-block-components-order-summary-item__image,
+    .wc-block-cart-item__prices,
+    .wc-block-components-product-metadata {
+      display: none;
+    }
+
+    .wc-block-components-order-summary-item__description {
+      padding: 0;
+    }
+
+    .wc-block-components-product-name {
+      margin: 0;
+      font-family: $font-body;
+      font-size: 15px;
+      font-weight: 400;
+      color: $color-navy-700;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+
+    .wc-block-components-order-summary-item__total-price {
+      font-size: 15px;
+      font-weight: 400;
+      color: $color-navy-700;
+    }
+  }
+
+  // "From Dec 8, 2026 ........ $99.99/month" — Subscriptions' recurring row.
+  // Its label is reworded to "/month" and set after the price.
+  .wcs-recurring-totals-panel {
+    margin-top: 8px;
+    padding: 0;
+    border: 0;
+  }
+
+  .wcs-recurring-totals-panel__title {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    column-gap: 0;
+    border: 0;
+    align-items: baseline;
+    padding: 0;
+    font-size: 15px;
+    color: $color-navy-700;
+
+    .wc-block-components-totals-item__description {
+      grid-row: 1;
+      grid-column: 1;
+      margin: 0;
+      font-size: 15px;
+      color: $color-navy-700;
+    }
+
+    .wc-block-components-totals-item__value {
+      grid-row: 1;
+      grid-column: 2;
+      font-weight: 400;
+    }
+
+    .wc-block-components-totals-item__label {
+      grid-row: 1;
+      grid-column: 3;
+      font-weight: 400;
+      text-transform: none;
+
+      // A ::first-letter capital elsewhere caught the "m" after the slash.
+      &::first-letter {
+        text-transform: none;
+      }
+    }
+  }
+
+  .wcs-recurring-totals-panel__details {
+    display: none;
+  }
+
+  // Subtotal repeats the plan line; discounts and fees still show.
+  .wp-block-woocommerce-checkout-order-summary-subtotal-block {
+    display: none;
+  }
+
+  // "Due today ........ $0.00"
+  .wc-block-components-totals-footer-item {
+    align-items: baseline;
+
+    .wc-block-components-totals-item__label {
+      font-size: 16px;
+      font-weight: 600;
+      color: $color-navy;
+    }
+
+    .wc-block-components-totals-item__value,
+    .wc-block-components-totals-footer-item-tax-value {
+      font-size: 24px;
+      font-weight: 600;
+      color: $color-navy;
+    }
+  }
+
+  // "Have a coupon?" as a link that opens the form.
+  .wc-block-components-totals-coupon {
+    margin-top: 8px;
+
+    .wc-block-components-panel__button {
+      display: inline-block;
+      width: auto;
+      min-height: 0;
+      margin: 0;
+      padding: 0;
+      font-size: 14px;
+      font-weight: 400;
+      color: $color-navy;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+
+      > svg {
+        display: none;
+      }
+    }
+
+    .wc-block-components-panel__content {
+      padding-top: 10px;
+    }
+  }
+
+  // ── The button ───────────────────────────────────────────────────────────
+  .wc-block-checkout__actions_row {
+    margin: 0;
+  }
+
+  .wc-block-components-checkout-place-order-button,
+  .wc-block-components-checkout-place-order-button.contained {
+    width: 100%;
+    min-height: 52px;
+    padding: 0 20px;
+    // The site's button style: condensed caps.
+    font-family: $font-heading;
+    -webkit-font-smoothing: antialiased;
+    font-weight: 700;
+    font-size: 17px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: $color-white;
+    background: $color-navy;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+
+    &:hover,
+    &:focus-visible {
+      background: $color-navy-700;
+      color: $color-white;
+    }
+  }
+}
+
+// ==========================================================================
+// Order received — woocommerce/checkout/thankyou.php, frame 72h.
+// ==========================================================================
+.c-order {
+  max-width: 560px;
+  font-family: $font-body;
+  color: $color-navy;
+
+  &__status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 6px;
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  &__status-sq {
+    width: 10px;
+    height: 10px;
+    background: $color-navy;
+  }
+
+  &__status.is-pending &__status-sq {
+    background: transparent;
+    border: 1.5px solid $color-navy;
+  }
+
+  &__title {
+    margin: 0 0 12px;
+    font-family: $font-heading;
+    font-weight: 700;
+    font-size: clamp(2rem, 5vw, 2.6rem);
+    line-height: 1.05;
+    color: $color-navy;
+  }
+
+  &__lead {
+    margin: 0 0 20px;
+    font-size: 16px;
+    line-height: 1.55;
+    color: $color-navy-700;
+  }
+
+  &__continue {
+    margin: 0 0 28px;
+  }
+
+  // The site's caps button, a little larger as the page's one action.
+  .btn.c-order__btn {
+    font-size: 17px;
+    padding: 14px 24px;
+    border-radius: 0;
+  }
+
+  &__facts {
+    margin: 0 0 32px;
+    border: 1px solid $co-hairline;
+    background: $color-white;
+
+    > div {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 16px;
+      font-size: 15px;
+    }
+
+    > div + div {
+      border-top: 1px solid rgba($color-navy, 0.12);
+    }
+
+    dt {
+      font-weight: 400;
+      color: $color-navy-700;
+    }
+
+    dd {
+      margin: 0;
+      text-align: right;
+      color: $color-navy;
+    }
+
+    .is-key dd {
+      font-weight: 600;
+    }
+  }
+
+  &__subtitle {
+    margin: 0 0 10px;
+    font-family: $font-body;
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: 0;
+    text-transform: none;
+    color: $color-navy;
+  }
+
+  &__address address {
+    margin: 0 0 10px;
+    font-style: normal;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  &__contact {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 4px;
+    font-size: 15px;
+  }
+
+  &__icon {
+    flex: none;
+    color: $co-slate;
+  }
+
+  &__footer {
+    margin: 28px 0 0;
+    font-size: 14px;
+    color: $co-slate;
+
+    a {
+      color: $color-navy;
+      text-decoration: underline;
+    }
+  }
+}

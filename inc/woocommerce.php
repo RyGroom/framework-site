@@ -113,6 +113,12 @@ add_action( 'init', function (): void {
     }
 
     if ( ( $_COOKIE[ FRAMEWORK_REF_PARAM ] ?? '' ) !== $ref && ! headers_sent() ) {
+        // Sent here for a different company than last time (or the first time
+        // since a purchase): what an earlier visitor typed into checkout is
+        // stale. See framework_forget_stale_checkout_details().
+        if ( isset( $_GET[ FRAMEWORK_REF_PARAM ] ) ) {
+            $GLOBALS['framework_new_company'] = true;
+        }
         framework_set_ref_cookie( $ref, time() + DAY_IN_SECONDS );
         $_COOKIE[ FRAMEWORK_REF_PARAM ] = $ref;
     }
@@ -130,6 +136,29 @@ add_action( 'init', function (): void {
         }
     }
 } );
+
+/**
+ * WooCommerce keeps what a signed-out visitor typed into checkout (email,
+ * name, address) in their session. A different company arriving from the app
+ * in the same browser then found the previous sign-up's email filled in, and
+ * could buy under it. Clear those details when the company changes. Signed-in
+ * store accounts keep theirs, and so does the same company coming back.
+ */
+function framework_forget_stale_checkout_details(): void {
+    if ( empty( $GLOBALS['framework_new_company'] ) || is_user_logged_in() || ! function_exists( 'WC' ) || ! WC()->customer ) {
+        return;
+    }
+
+    $customer = WC()->customer;
+    $customer->set_billing_email( '' );
+    foreach ( [ 'first_name', 'last_name', 'company', 'address_1', 'address_2', 'city', 'postcode', 'phone' ] as $field ) {
+        $customer->{"set_billing_$field"}( '' );
+        $customer->{"set_shipping_$field"}( '' );
+    }
+    $customer->save();
+}
+// After WooCommerce loads the session's customer, before add-to-cart runs (20).
+add_action( 'wp_loaded', 'framework_forget_stale_checkout_details', 15 );
 
 // No second free month: a returning company is charged at checkout. This also
 // keeps "Free trial" off renewal and resubscribe carts, which are always theirs.
@@ -273,7 +302,9 @@ add_filter( 'woocommerce_login_redirect', function ( $redirect ) {
     return $has_cart ? wc_get_checkout_url() : home_url( '/pricing/' );
 } );
 
-// The way back to the app. It waits there for the webhook to turn access on.
+// Leaving the store: the reference cookies have done their job. The way back
+// to the app (it waits there for the webhook to turn access on) is the
+// "Continue to Framework" button in woocommerce/checkout/thankyou.php.
 add_action( 'woocommerce_thankyou', function (): void {
     foreach ( [ FRAMEWORK_REF_PARAM, FRAMEWORK_RETURNING_PARAM, FRAMEWORK_CUSTOMER_PARAM ] as $name ) {
         if ( isset( $_COOKIE[ $name ] ) && ! headers_sent() ) {
@@ -281,9 +312,5 @@ add_action( 'woocommerce_thankyou', function (): void {
         }
     }
 
-    printf(
-        '<p class="c-store-return"><a class="btn btn-primary btn-lg" href="%s">%s</a></p>',
-        esc_url( framework_app_url( '/subscribe?from_checkout=1' ) ),
-        esc_html__( 'Continue to Framework', 'framework' )
-    );
+    // The "Continue to Framework" button is in woocommerce/checkout/thankyou.php.
 }, 1 );

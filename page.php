@@ -17,7 +17,11 @@ while ( have_posts() ) :
                 <div class="row justify-content-center">
                     <div class="col-lg-8">
                         <div class="c-content__inner">
-                            <h1 class="c-content__title"><?php the_title(); ?></h1>
+                            <?php // Filterable so a page can set its own heading, or none (store pages). ?>
+                            <?php $framework_title = apply_filters( 'framework_page_title', get_the_title() ); ?>
+                            <?php if ( $framework_title !== '' ) : ?>
+                                <h1 class="c-content__title"><?php echo esc_html( $framework_title ); ?></h1>
+                            <?php endif; ?>
                             <div class="c-content__body"><?php the_content(); ?></div>
                         </div>
                     </div>

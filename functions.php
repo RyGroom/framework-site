@@ -8,6 +8,7 @@ require_once get_template_directory() . '/inc/helpers.php';
 require_once get_template_directory() . '/inc/acf-fields.php';
 require_once get_template_directory() . '/inc/texting-feature.php';
 require_once get_template_directory() . '/inc/woocommerce.php';
+require_once get_template_directory() . '/inc/woocommerce-checkout.php';
 
 /**
  * Theme setup.

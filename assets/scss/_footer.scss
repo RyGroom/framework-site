@@ -19,7 +19,9 @@
   }
 }
 
-.c-footer__logo {
+// .c-footer img. — WooCommerce pages load `.woocommerce-page img { height: auto }`,
+// which outranked a bare class and blew the logo up on checkout/order pages.
+.c-footer img.c-footer__logo {
   display: block;
   height: 26px;
   width: auto;
