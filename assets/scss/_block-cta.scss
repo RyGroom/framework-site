@@ -1,0 +1,20 @@
+// ==========================================================================
+// Block — Call to action (navy band)
+// ==========================================================================
+@use 'variables' as *;
+
+.c-cta {
+  padding: $section-padding-y 0;
+  background: $color-dark-bg;
+  color: $color-dark-text;
+}
+
+.c-cta__heading {
+  margin-bottom: $space-2;
+  color: $color-dark-text;
+  font-size: min(10vw, 56px);
+}
+
+.c-cta__text {
+  color: rgba($color-dark-text, 0.8);
+}

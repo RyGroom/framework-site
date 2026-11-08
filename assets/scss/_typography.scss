@@ -1,0 +1,39 @@
+// ==========================================================================
+// Typography
+// ==========================================================================
+@use 'variables' as *;
+
+h1,
+h2,
+h3,
+h4,
+.h1,
+.h2,
+.h3,
+.h4 {
+  font-family: $font-heading;
+  -webkit-font-smoothing: antialiased; // condensed display type renders too heavy without it
+  font-weight: $font-weight-heading;
+  color: $color-navy;
+  line-height: 1.05;
+  letter-spacing: -0.005em;
+}
+
+.lead {
+  font-weight: $font-weight-body; // Bootstrap's .lead is 300, which Barlow renders as thin 400
+  font-size: 1.25rem;
+  color: $color-text-muted;
+  max-width: $measure;
+}
+
+// Small caps label above a heading — the only place all-caps is used.
+.c-eyebrow {
+  margin-bottom: $space-2;
+  font-family: $font-heading;
+  -webkit-font-smoothing: antialiased; // condensed display type renders too heavy without it
+  font-size: $font-size-sm;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $color-navy-700;
+}

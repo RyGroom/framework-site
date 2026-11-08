@@ -1,0 +1,228 @@
+// ==========================================================================
+// Store pages — My Account, order and payment pages, notices. WooCommerce's
+// own styles keep the layout; this brings buttons, the account menu and
+// notices in line with the rest of the site. Block checkout styles itself
+// from the theme's fonts and colours, so it needs little here.
+// ==========================================================================
+@use 'variables' as *;
+
+// ── Buttons ────────────────────────────────────────────────────────────────
+// Secondary actions (View, Cancel, Change payment) as navy outline buttons;
+// the main action on a page (.alt, Place order) as the orange one.
+.woocommerce,
+.woocommerce-page {
+  a.button,
+  button.button,
+  input.button,
+  .woocommerce-button {
+    font-family: $font-heading;
+    -webkit-font-smoothing: antialiased;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    line-height: 1.2;
+    padding: 0.6rem 1.1rem;
+    border: 1px solid $color-navy;
+    border-radius: $radius;
+    background: transparent;
+    color: $color-navy;
+    transition:
+      background-color $transition,
+      border-color $transition,
+      color $transition;
+
+    &:hover,
+    &:focus-visible {
+      background: $color-navy;
+      border-color: $color-navy;
+      color: $color-cream;
+    }
+  }
+
+  a.button.alt,
+  button.button.alt,
+  input.button.alt,
+  #place_order,
+  button.button.woocommerce-form-login__submit,
+  button.button.woocommerce-form-register__submit,
+  button.button[name='save_account_details'],
+  button.button[name='save_address'] {
+    background: $color-cta;
+    border-color: $color-cta;
+    color: $color-cta-text;
+
+    &:hover,
+    &:focus-visible {
+      background: $color-cta-hover;
+      border-color: $color-cta-hover;
+      color: $color-cta-text;
+    }
+  }
+
+  // Subscription actions sit in a table cell: give them room to wrap.
+  td.subscription-actions,
+  .shop_table .order-actions,
+  td.woocommerce-orders-table__cell-order-actions {
+    .button {
+      margin: 0 $space-1 $space-1 0;
+    }
+  }
+}
+
+// ── Account menu ───────────────────────────────────────────────────────────
+.woocommerce-MyAccount-navigation {
+  ul {
+    list-style: none;
+    margin: 0 0 $space-4;
+    padding: 0;
+    border-left: 1px solid $color-divider;
+  }
+
+  li a {
+    display: block;
+    padding: 0.4rem $space-2;
+    margin-left: -1px;
+    border-left: 3px solid transparent;
+    color: $color-text;
+    text-decoration: none;
+    transition:
+      border-color $transition,
+      color $transition;
+
+    &:hover {
+      border-left-color: $color-divider;
+      color: $color-navy-700;
+    }
+  }
+
+  li.is-active a {
+    border-left-color: $color-cta;
+    font-weight: 600;
+  }
+
+  // Phones: one row of tabs that scrolls sideways instead of a long list.
+  @media (max-width: 767.98px) {
+    ul {
+      display: flex;
+      gap: $space-1;
+      overflow-x: auto;
+      border-left: 0;
+      border-bottom: 1px solid $color-divider;
+      margin-bottom: $space-3;
+    }
+
+    li a {
+      white-space: nowrap;
+      margin: 0 0 -1px;
+      padding: 0.5rem 0.25rem;
+      border-left: 0;
+      border-bottom: 3px solid transparent;
+
+      &:hover {
+        border-bottom-color: $color-divider;
+      }
+    }
+
+    li.is-active a {
+      border-bottom-color: $color-cta;
+    }
+  }
+}
+
+// ── Notices ────────────────────────────────────────────────────────────────
+.woocommerce-message,
+.woocommerce-info,
+.woocommerce-error,
+.c-store-signin {
+  background: $color-bg-alt;
+  border: 0;
+  border-left: 4px solid $color-navy-700;
+  border-radius: $radius;
+  color: $color-text;
+  // Room on the left for WooCommerce's icon, which sits at 1em.
+  padding: $space-2 $space-3 $space-2 3rem;
+  margin-bottom: $space-3;
+  list-style: none;
+
+  &::before {
+    left: 1rem;
+    color: $color-navy-700;
+  }
+
+  a:not(.button) {
+    color: $color-link;
+    text-decoration: underline;
+  }
+}
+
+.woocommerce-message {
+  border-left-color: $color-cta;
+
+  &::before {
+    color: $color-cta-hover;
+  }
+}
+
+.woocommerce-error {
+  border-left-color: #b3261e;
+
+  &::before {
+    color: #b3261e;
+  }
+}
+
+// ── Tables, payment box, forms ─────────────────────────────────────────────
+.woocommerce table.shop_table {
+  border-radius: $radius;
+  border-color: $color-divider;
+
+  th,
+  td {
+    border-color: $color-divider;
+  }
+}
+
+.woocommerce-checkout #payment,
+#add_payment_method #payment {
+  background: $color-bg-alt;
+  border-radius: $radius;
+
+  div.payment_box {
+    background: $color-card;
+    border-radius: $radius;
+
+    &::before {
+      border-bottom-color: $color-card;
+    }
+  }
+}
+
+.woocommerce form.login,
+.woocommerce form.register {
+  border-color: $color-divider;
+  border-radius: $radius;
+  background: $color-card;
+}
+
+.woocommerce form .form-row {
+  input.input-text,
+  textarea,
+  select {
+    border: 1px solid rgba($color-navy, 0.35);
+    border-radius: $radius;
+    padding: 0.55rem 0.75rem;
+    background: $color-white;
+    color: $color-text;
+
+    &:focus {
+      outline: 2px solid $color-cta;
+      outline-offset: 0;
+      border-color: $color-navy;
+    }
+  }
+}
+
+// The way back to the app on the thank-you page.
+.c-store-return {
+  margin: $space-3 0 $space-4;
+}

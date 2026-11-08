@@ -1,0 +1,107 @@
+// ==========================================================================
+// Block — Feature checklist (the All features page): one card per area
+// ==========================================================================
+@use 'variables' as *;
+
+.c-feature-list__group {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: $space-3;
+  background: $color-card;
+  border: 1px solid $color-divider;
+}
+
+.c-feature-list__head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: $space-2;
+}
+
+// Same navy tile as the feature grid, a size down.
+.c-feature-list__icon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  background: $color-navy;
+  color: $color-white;
+  border-radius: 9px;
+  font-size: 1.15rem;
+}
+
+.c-feature-list__title {
+  margin: 0;
+  font-size: 1.5rem;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover,
+    &:focus-visible {
+      text-decoration: underline;
+      text-decoration-color: $color-orange;
+      text-decoration-thickness: 2px;
+    }
+  }
+}
+
+.c-feature-list__items {
+  flex: 1 1 auto;
+
+  li {
+    display: flex;
+    gap: $space-1;
+    align-items: baseline;
+    padding: 0.4rem 0;
+    border-top: 1px solid $color-divider;
+
+    &:first-child {
+      border-top: 0;
+    }
+  }
+
+  .bi {
+    color: $color-orange-600;
+    font-size: 1.1rem;
+  }
+}
+
+.c-feature-list__tag {
+  display: inline-block;
+  margin-left: 0.35rem;
+  padding: 0.05rem 0.4rem;
+  border: 1px solid $color-divider;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: $color-navy-400;
+  vertical-align: 0.1em;
+  white-space: nowrap;
+}
+
+.c-feature-list__more {
+  display: inline-block;
+  margin-top: $space-3;
+  font-family: $font-heading;
+  -webkit-font-smoothing: antialiased; // condensed display type renders too heavy without it
+  font-size: $font-size-sm;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $color-navy;
+  text-decoration: none;
+
+  .bi {
+    margin-left: 0.25rem;
+    color: $color-orange-600;
+  }
+
+  &:hover .bi {
+    margin-left: 0.4rem;
+  }
+}

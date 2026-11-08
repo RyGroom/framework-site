@@ -1,0 +1,19 @@
+/*
+Theme Name: Framework
+Theme URI: http://localhost:8888/framework-site
+Author: Ryan Groom
+Description: Marketing site for Framework, the field service app. Bootstrap 5, SCSS and an ACF page builder.
+Version: 0.1.0
+Requires at least: 6.0
+Requires PHP: 8.0
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: framework
+Tags: minimal, starter
+*/
+
+/*
+ * This file is required by WordPress for theme identification.
+ * All styles are compiled from assets/scss/ into assets/css/main.css.
+ * Run `npm run watch` in the theme directory to start the build watcher.
+ */

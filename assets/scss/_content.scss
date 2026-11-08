@@ -1,0 +1,35 @@
+// ==========================================================================
+// Content — plain pages (legal, simple text) and the Text section
+// ==========================================================================
+@use 'variables' as *;
+
+.c-content {
+  padding: $section-padding-y 0;
+}
+
+.c-content__title {
+  margin-bottom: $space-4;
+  font-size: min(10vw, 56px);
+}
+
+// Holds a page's title and body at reading width, centered. It sits at body
+// text size, because a width in ch depends on the font size of what it's on.
+.c-content__inner {
+  max-width: 85ch;
+  margin-inline: auto;
+}
+
+.c-content__body {
+
+  h2,
+  h3 {
+    margin-top: $space-6;
+    margin-bottom: $space-2;
+  }
+
+  p,
+  ul,
+  ol {
+    margin-bottom: $space-3;
+  }
+}

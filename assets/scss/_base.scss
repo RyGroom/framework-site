@@ -1,0 +1,66 @@
+// ==========================================================================
+// Base — Bootstrap (CDN) re-themed through its CSS custom properties
+// ==========================================================================
+@use 'variables' as *;
+
+:root {
+  --bs-body-font-family: #{$font-body};
+  --bs-body-font-size: #{$font-size-base};
+  --bs-body-font-weight: #{$font-weight-body};
+  --bs-body-line-height: #{$line-height-base};
+  --bs-body-color: #{$color-text};
+  --bs-body-bg: #{$color-bg};
+  --bs-emphasis-color: #{$color-navy};
+  --bs-link-color: #{$color-link};
+  --bs-link-color-rgb: 41, 72, 103;
+  --bs-link-hover-color: #{$color-navy};
+  --bs-link-hover-color-rgb: 18, 46, 80;
+  --bs-border-color: #{$color-divider};
+  --bs-border-radius: #{$radius};
+  --bs-border-radius-lg: #{$radius};
+  --bs-focus-ring-color: #{rgba($color-orange, 0.45)};
+}
+
+html {
+  scroll-padding-top: $header-height + 16px; // in-page anchors land below the sticky header
+}
+
+// Thinner Mac smoothing only for light text on dark bands, where the default
+// rendering blooms; dark body text on light keeps its full weight. Headings,
+// eyebrows and buttons set their own thin smoothing alongside the condensed font.
+.c-cta,
+.c-footer {
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-underline-offset: 0.2em;
+}
+
+// Visible focus everywhere — never removed without a replacement.
+:focus-visible {
+  outline: 3px solid $color-orange;
+  outline-offset: 2px;
+}
+
+.c-skip-link {
+  position: absolute;
+  top: $space-1;
+  left: $space-1;
+  z-index: 2000;
+  padding: $space-1 $space-2;
+  background: $color-navy;
+  color: $color-cream;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}

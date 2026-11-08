@@ -1,0 +1,177 @@
+// ==========================================================================
+// Header — sticky; gains a divider once the page scrolls (main.js)
+// ==========================================================================
+@use 'variables' as *;
+
+.c-header {
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  background: rgba($color-card, 0.94);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid transparent;
+  transition: border-color $transition;
+
+  &.is-scrolled {
+    border-bottom-color: $color-divider;
+  }
+
+  .navbar {
+    min-height: $header-height;
+  }
+
+  .nav-link {
+    font-weight: 500;
+    color: $color-navy;
+
+    &:hover,
+    &:focus-visible,
+    &.active {
+      color: $color-navy-700;
+    }
+  }
+
+  // Only real pages: WordPress also marks the in-page links (#features,
+  // #how-it-works) "current" on the homepage, which would underline them all.
+  .current-menu-item:not(.menu-item-type-custom) > .nav-link,
+  .current-menu-ancestor > .nav-link,
+  .current-menu-parent > .nav-link {
+    text-decoration: underline;
+    text-decoration-color: $color-orange;
+    text-decoration-thickness: 2px;
+  }
+
+  .navbar-toggler {
+    border: 0;
+  }
+}
+
+.c-header__brand img {
+  display: block;
+  height: 28px;
+  width: auto;
+}
+
+.c-header__login {
+  color: $color-navy;
+  text-decoration: none;
+}
+
+// --------------------------------------------------------------------------
+// Features dropdown — a two-column panel of the feature pages
+// --------------------------------------------------------------------------
+.c-header .dropdown-toggle::after {
+  // A thin chevron instead of Bootstrap's solid caret.
+  content: '';
+  width: 0.4em;
+  height: 0.4em;
+  margin-left: 0.4em;
+  border: 0;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-0.2em) rotate(45deg);
+  vertical-align: middle;
+  transition: transform $transition;
+}
+
+.c-header .dropdown-toggle.show::after {
+  transform: translateY(0.05em) rotate(-135deg);
+}
+
+.c-nav-panel {
+  padding: $space-2;
+  border: 1px solid $color-divider;
+  border-radius: 0;
+  background: $color-card;
+  box-shadow: none; // inside the open phone menu it's part of the list, not floating over the page
+
+  @media (min-width: 992px) {
+    box-shadow: 0 24px 60px rgba($color-navy, 0.14);
+    // Centred under the Features link rather than hanging off its left edge.
+    left: 50% !important;
+    width: 640px;
+    margin-top: 0.75rem !important;
+    transform: translateX(-50%);
+  }
+}
+
+.c-nav-panel__grid {
+  display: grid;
+  gap: 0.25rem;
+
+  @media (min-width: 576px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.c-nav-panel__item {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  height: 100%;
+  padding: 0.75rem;
+  color: $color-navy;
+  text-decoration: none;
+  transition: background-color $transition;
+
+  &:hover,
+  &:focus-visible {
+    background: $color-cream;
+
+    .c-nav-panel__title {
+      text-decoration: underline;
+      text-decoration-color: $color-orange;
+      text-decoration-thickness: 2px;
+    }
+  }
+}
+
+.c-nav-panel__icon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  background: $color-navy;
+  color: $color-white;
+  border-radius: 8px;
+  font-size: 1.05rem;
+}
+
+.c-nav-panel__title {
+  display: block;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.c-nav-panel__desc {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: $font-size-sm;
+  line-height: 1.4;
+  color: $color-text-muted;
+}
+
+.c-nav-panel__all {
+  grid-column: 1 / -1;
+  margin-top: 0.5rem;
+  padding: 0.75rem 0.75rem 0.25rem;
+  border-top: 1px solid $color-divider;
+
+  a {
+    font-family: $font-heading;
+    -webkit-font-smoothing: antialiased; // condensed display type renders too heavy without it
+    font-size: $font-size-sm;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: $color-navy;
+    text-decoration: none;
+  }
+
+  .bi {
+    margin-left: 0.25rem;
+    color: $color-orange-600;
+  }
+}

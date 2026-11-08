@@ -1,0 +1,11 @@
+# Build tooling
+node_modules/
+# main.min.css / main.min.js ARE tracked — production has no Node/npm, so
+# git is how compiled assets get there. Only the dev source map is ignored.
+assets/css/main.css.map
+
+# OS & editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo

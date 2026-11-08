@@ -1,0 +1,52 @@
+// ==========================================================================
+// Footer — navy, reversed wordmark
+// ==========================================================================
+@use 'variables' as *;
+
+.c-footer {
+  padding: $space-8 0 $space-4;
+  background: $color-footer-bg;
+  color: rgba($color-dark-text, 0.8);
+
+  a {
+    color: $color-dark-text;
+    text-decoration: none;
+
+    &:hover,
+    &:focus-visible {
+      text-decoration: underline;
+    }
+  }
+}
+
+.c-footer__logo {
+  display: block;
+  height: 26px;
+  width: auto;
+}
+
+.c-footer__blurb {
+  max-width: 38ch;
+}
+
+.c-footer__menu li + li {
+  margin-top: $space-1;
+}
+
+// A long address in a half-width phone column must wrap, never widen the page.
+.c-footer__menu a {
+  overflow-wrap: anywhere;
+}
+
+.c-footer__bottom {
+  border-top: 1px solid rgba($color-dark-text, 0.15);
+  font-size: $font-size-sm;
+}
+
+.c-footer__legal li {
+  display: inline-block;
+
+  & + li {
+    margin-left: $space-3;
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "name": "framework-theme",
+  "version": "1.0.0",
+  "description": "Framework marketing theme build tools",
+  "private": true,
+  "scripts": {
+    "build:scss": "sass assets/scss/style.scss assets/css/main.min.css --style=compressed --no-source-map",
+    "build:scss:dev": "sass assets/scss/style.scss assets/css/main.css --style=expanded --source-map",
+    "build:js": "terser assets/js/main.js --compress --mangle --output assets/js/main.min.js",
+    "format:scss": "prettier --write \"assets/scss/**/*.scss\"",
+    "format:js": "prettier --write \"assets/js/**/*.js\"",
+    "format": "npm run format:scss && npm run format:js",
+    "build": "npm run format && npm run build:scss && npm run build:js",
+    "watch:scss": "chokidar \"assets/scss/**/*.scss\" -c \"prettier --write {path} && npm run build:scss:dev\"",
+    "watch:js": "chokidar \"assets/js/**/*.js\" -c \"prettier --write {path}\"",
+    "watch": "concurrently \"npm run watch:scss\" \"npm run watch:js\""
+  },
+  "devDependencies": {
+    "chokidar-cli": "^3.0.0",
+    "concurrently": "^9.0.0",
+    "prettier": "^3.0.0",
+    "sass": "^1.0.0",
+    "terser": "^5.0.0"
+  }
+}

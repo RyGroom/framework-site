@@ -1,0 +1,45 @@
+// ==========================================================================
+// Buttons — orange call to action with navy text, like the app
+// ==========================================================================
+@use 'variables' as *;
+
+.btn {
+  font-family: $font-heading;
+  -webkit-font-smoothing: antialiased; // condensed display type renders too heavy without it
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition:
+    background-color $transition,
+    border-color $transition,
+    color $transition;
+}
+
+.btn-primary {
+  --bs-btn-color: #{$color-cta-text};
+  --bs-btn-bg: #{$color-cta};
+  --bs-btn-border-color: #{$color-cta};
+  --bs-btn-hover-color: #{$color-cta-text};
+  --bs-btn-hover-bg: #{$color-cta-hover};
+  --bs-btn-hover-border-color: #{$color-cta-hover};
+  --bs-btn-active-color: #{$color-cta-text};
+  --bs-btn-active-bg: #{$color-cta-hover};
+  --bs-btn-active-border-color: #{$color-cta-hover};
+  --bs-btn-focus-shadow-rgb: 255, 164, 5;
+}
+
+.btn-outline-dark {
+  --bs-btn-color: #{$color-navy};
+  --bs-btn-border-color: #{$color-navy};
+  --bs-btn-hover-bg: #{$color-navy};
+  --bs-btn-hover-border-color: #{$color-navy};
+  --bs-btn-hover-color: #{$color-cream};
+  --bs-btn-active-bg: #{$color-navy};
+  --bs-btn-active-border-color: #{$color-navy};
+}
+
+.btn-lg {
+  --bs-btn-padding-x: 1.75rem;
+  --bs-btn-padding-y: 0.85rem;
+  --bs-btn-font-size: 1.05rem;
+}

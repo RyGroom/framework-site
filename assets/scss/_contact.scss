@@ -1,0 +1,212 @@
+// ==========================================================================
+// Contact page + Contact Form 7 forms
+// ==========================================================================
+@use 'variables' as *;
+
+.c-contact {
+  padding: min(14vw, 6rem) 0 $section-padding-y;
+}
+
+.c-contact__heading {
+  margin-bottom: $space-3;
+  font-size: min(12vw, 64px);
+  line-height: 1;
+}
+
+.c-contact__intro p {
+  font-size: 1.1875rem;
+  color: $color-text-muted;
+}
+
+.c-contact__points {
+  display: grid;
+  gap: $space-3;
+  margin-top: $space-6;
+
+  li {
+    display: flex;
+    gap: $space-2;
+    align-items: flex-start;
+  }
+
+  strong {
+    display: block;
+    font-weight: 600;
+  }
+
+  .d-block {
+    color: $color-text-muted;
+  }
+}
+
+.c-contact__icon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: $color-navy;
+  color: $color-white;
+  font-size: 1.15rem;
+}
+
+// The form card: white panel with the logo's orange corner.
+.c-contact__card {
+  position: relative;
+  padding: min(7vw, 2.75rem);
+  background: $color-white;
+  border: 1px solid $color-divider;
+  box-shadow: 0 24px 48px rgba($color-navy, 0.08);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: $color-orange;
+    clip-path: polygon(0 0, 100% 0, 100% 100%);
+  }
+}
+
+// --------------------------------------------------------------------------
+// Contact Form 7 — any form on the site
+// --------------------------------------------------------------------------
+.wpcf7 {
+  .c-form__field {
+    margin-bottom: $space-3;
+  }
+
+  // Fields carry their own bottom margin; no extra row gap on top of it.
+  .row {
+    --bs-gutter-y: 0;
+  }
+
+  label {
+    display: block;
+    width: 100%;
+    font-family: $font-heading;
+    -webkit-font-smoothing: antialiased;
+    font-size: $font-size-sm;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: $color-navy;
+  }
+
+  .c-form__optional {
+    font-weight: 600;
+    letter-spacing: 0;
+    text-transform: none;
+    color: $color-navy-400;
+  }
+
+  .wpcf7-form-control-wrap {
+    display: block;
+    margin-top: 0.4rem;
+  }
+
+  input[type='text'],
+  input[type='email'],
+  input[type='tel'],
+  select,
+  textarea {
+    display: block;
+    width: 100%;
+    padding: 0.7rem 0.9rem;
+    // Controls sit inside the label; reset its condensed caps.
+    font-family: $font-body;
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+    -webkit-font-smoothing: auto;
+    color: $color-text;
+    background: $color-card;
+    border: 1px solid rgba($color-navy, 0.28);
+    border-radius: $radius;
+    transition:
+      border-color 0.15s,
+      box-shadow 0.15s;
+
+    &:focus {
+      outline: none;
+      border-color: $color-navy;
+      box-shadow: 0 0 0 3px rgba($color-orange, 0.45);
+    }
+  }
+
+  select {
+    appearance: none;
+    padding-right: 2.5rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23122e50' stroke-width='2'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.9rem center;
+  }
+
+  textarea {
+    height: 10rem;
+    resize: vertical;
+  }
+
+  ::placeholder {
+    color: $color-navy-400;
+  }
+
+  .wpcf7-not-valid {
+    border-color: #b42318;
+  }
+
+  .wpcf7-not-valid-tip {
+    margin-top: 0.35rem;
+    font-family: $font-body;
+    font-weight: 500;
+    letter-spacing: 0;
+    text-transform: none;
+    font-size: $font-size-sm;
+    color: #b42318;
+  }
+
+  .c-form__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-2;
+    align-items: center;
+    margin-top: $space-4;
+  }
+
+  .c-form__note {
+    margin: 0;
+    font-size: $font-size-sm;
+    color: $color-text-muted;
+  }
+
+  // Keep the (usually invisible) spinner out from between button and note.
+  .wpcf7-spinner {
+    order: 3;
+    margin: 0;
+  }
+
+  // CF7's status line after sending.
+  // form-qualified to beat CF7's own `.wpcf7 form .wpcf7-response-output`.
+  form .wpcf7-response-output {
+    margin: $space-3 0 0;
+    padding: 0.75rem 1rem;
+    border: 0;
+    border-left: 4px solid $color-navy;
+    background: $color-cream;
+    font-size: 0.95rem;
+  }
+
+  form.sent .wpcf7-response-output {
+    border-left-color: #2e7d32;
+  }
+
+  form.invalid .wpcf7-response-output,
+  form.failed .wpcf7-response-output {
+    border-left-color: #b42318;
+  }
+}

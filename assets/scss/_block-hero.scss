@@ -1,0 +1,110 @@
+// ==========================================================================
+// Block — Hero
+// ==========================================================================
+@use 'variables' as *;
+
+.c-hero {
+  padding: min(16vw, 7rem) 0 $section-padding-y;
+  background: $color-bg;
+  overflow: hidden; // the media panel bleeds right
+}
+
+.c-hero__heading {
+  margin-bottom: $space-3;
+  font-size: min(13vw, 84px); // scales down on phones
+  line-height: 0.98;
+}
+
+// Split (with an image): a smaller heading so it holds in five columns.
+.c-hero--split .c-hero__heading {
+  font-size: min(13vw, 68px);
+}
+
+// The *highlighted* word: an orange bar behind its lower half.
+.c-hero__mark {
+  background: linear-gradient(
+    transparent 58%,
+    $color-orange 58%,
+    $color-orange 90%,
+    transparent 90%
+  );
+  padding: 0 0.04em;
+}
+
+.c-hero__text {
+  font-size: min(5vw, 1.375rem);
+}
+
+.c-hero .text-center .lead {
+  margin-inline: auto;
+}
+
+.c-hero__points {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: $color-text-muted;
+
+  li {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+  }
+
+  .bi {
+    color: $color-navy;
+    font-size: 1.1rem;
+  }
+}
+
+// Navy panel behind the product shot, with the logo's orange corner.
+.c-hero__media {
+  position: relative;
+  padding: 2.5rem 0 2.5rem 2rem;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0 -50vw 0 4.5rem; // runs off the right edge of the page
+    background: $color-navy;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 4.5rem;
+    width: 3.25rem;
+    height: 3.25rem;
+    background: $color-orange;
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+  }
+}
+
+// Hero composites carry a transparent gutter (6% of the content width) on every
+// side so their shadows fade out inside the file instead of being clipped at
+// its edge. Pull the image out by that gutter so the phones/window sit where
+// the layout puts them — overhang onto the cream included.
+.c-hero__image {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 112%;
+  max-width: none;
+  height: auto;
+  margin: -6%; // margin % is of the column width, matching the gutter
+}
+
+@media (max-width: 991.98px) {
+  .c-hero__media {
+    padding: 1.5rem 0 1.5rem 1rem;
+
+    &::before {
+      left: 2.5rem;
+    }
+    &::after {
+      left: 2.5rem;
+      width: 2.25rem;
+      height: 2.25rem;
+    }
+  }
+}

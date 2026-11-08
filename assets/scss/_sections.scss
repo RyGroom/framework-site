@@ -1,0 +1,26 @@
+// ==========================================================================
+// Sections — shared spacing and backgrounds for page builder blocks
+// ==========================================================================
+@use 'variables' as *;
+
+.c-section {
+  padding: $section-padding-y 0;
+
+  &--light {
+    background: $color-bg;
+  }
+
+  &--cream {
+    background: $color-bg-alt;
+  }
+}
+
+.c-section__head {
+  max-width: 720px;
+  margin-bottom: $space-6;
+}
+
+.c-section__heading {
+  margin-bottom: $space-2;
+  font-size: min(9vw, 48px);
+}

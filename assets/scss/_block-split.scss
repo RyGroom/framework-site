@@ -1,0 +1,32 @@
+// ==========================================================================
+// Block — Text + image
+// ==========================================================================
+@use 'variables' as *;
+
+.c-split__list li {
+  display: flex;
+  gap: $space-1;
+  align-items: baseline;
+
+  & + li {
+    margin-top: $space-1;
+  }
+
+  .bi {
+    color: $color-orange-600;
+    font-size: 1.1rem;
+  }
+}
+
+.c-split__image {
+  width: 100%;
+  box-shadow: 0 24px 60px rgba($color-navy, 0.12);
+}
+
+// Stand-in until a screenshot is added: a calm navy panel, not an empty gap.
+.c-split__placeholder {
+  aspect-ratio: 4 / 3;
+  background:
+    linear-gradient(135deg, rgba($color-white, 0.06) 25%, transparent 25%) 0 0 / 24px 24px,
+    $color-navy-700;
+}

@@ -1,0 +1,55 @@
+// ==========================================================================
+// Block — Feature grid
+// ==========================================================================
+@use 'variables' as *;
+
+.c-feature-grid__item {
+  height: 100%;
+}
+
+// Solid navy rounded icon tile with a white glyph.
+.c-feature-grid__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: $space-2;
+  background: $color-navy;
+  color: $color-white;
+  border-radius: 10px;
+  font-size: 1.35rem;
+}
+
+.c-feature-grid__title {
+  margin-bottom: $space-1;
+  font-size: 1.6rem;
+}
+
+// A card with its own page: the title is the link (stretched over the card).
+.c-feature-grid__title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.c-feature-grid__item:hover .c-feature-grid__title a {
+  text-decoration: underline;
+  text-decoration-color: $color-orange;
+  text-decoration-thickness: 2px;
+}
+
+.c-feature-grid__more {
+  margin-top: $space-2;
+  font-family: $font-heading;
+  -webkit-font-smoothing: antialiased; // condensed display type renders too heavy without it
+  font-size: $font-size-sm;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: $color-navy;
+
+  .bi {
+    margin-left: 0.25rem;
+    color: $color-orange-600;
+  }
+}

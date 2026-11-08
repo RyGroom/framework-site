@@ -1,0 +1,57 @@
+// ==========================================================================
+// Variables — the Framework app's brand (resources: framework/public/css/industry.css)
+// ==========================================================================
+
+// ── Palette ────────────────────────────────────────────────────────────────
+$color-navy: #122e50; // the app's text navy
+$color-navy-900: #0a1c33; // a step darker — the footer, so it reads apart from a navy section above it
+$color-navy-700: #294867; // the app's accent navy
+$color-navy-400: #5f7c99;
+$color-orange: #ffa405; // the app's call-to-action highlight
+$color-orange-600: #e69404;
+$color-orange-100: #fff1db;
+$color-cream: #f6f1e9; // the app's page background
+$color-card: #fffdf9;
+$color-white: #ffffff;
+$color-divider: rgba($color-navy, 0.14);
+
+// ── Semantic aliases ───────────────────────────────────────────────────────
+$color-bg: $color-card;
+$color-bg-alt: $color-cream;
+$color-text: $color-navy;
+$color-text-muted: rgba(
+  $color-navy,
+  0.85
+); // a step back from the text, still clearly readable on cream
+$color-link: $color-navy-700;
+$color-cta: $color-orange;
+$color-cta-hover: $color-orange-600;
+$color-cta-text: $color-navy; // navy on orange reads better than white (contrast)
+$color-dark-bg: $color-navy;
+$color-footer-bg: $color-navy-900;
+$color-dark-text: $color-cream;
+
+// ── Typography ─────────────────────────────────────────────────────────────
+$font-body: 'Barlow', system-ui, sans-serif;
+$font-heading: 'Barlow Condensed', system-ui, sans-serif;
+$font-weight-heading: 700;
+$font-weight-body: 400; // 500 read too heavy; 400 with normal smoothing + darker muted text is enough
+$font-size-base: 1.0625rem; // 17px
+$font-size-sm: 0.875rem;
+$line-height-base: 1.6;
+$measure: 65ch; // comfortable reading line length
+
+// ── Spacing (multiples of 8px) ─────────────────────────────────────────────
+$space-1: 0.5rem;
+$space-2: 1rem;
+$space-3: 1.5rem;
+$space-4: 2rem;
+$space-6: 3rem;
+$space-8: 4rem;
+$space-12: 6rem;
+$section-padding-y: min(14vw, $space-12);
+
+// ── Shape & motion ─────────────────────────────────────────────────────────
+$radius: 0; // square corners, like the app's controls
+$transition: 200ms ease-out;
+$header-height: 72px;

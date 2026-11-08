@@ -1,0 +1,28 @@
+// ==========================================================================
+// Block — FAQ (Bootstrap accordion, re-themed)
+// ==========================================================================
+@use 'variables' as *;
+
+.c-faq__list {
+  --bs-accordion-bg: transparent;
+  --bs-accordion-border-color: #{$color-divider};
+  --bs-accordion-btn-color: #{$color-navy};
+  --bs-accordion-active-color: #{$color-navy};
+  --bs-accordion-active-bg: transparent;
+  --bs-accordion-btn-focus-box-shadow: none;
+  --bs-accordion-body-padding-x: 0;
+  --bs-accordion-btn-padding-x: 0;
+
+  // Body font, not the condensed display face, so the questions read as a
+  // list under the section heading instead of competing with it.
+  .accordion-button {
+    font-family: $font-body; // the h3 around it would hand down the condensed face
+    -webkit-font-smoothing: auto;
+    font-size: 1.15rem;
+    font-weight: 500;
+  }
+
+  .accordion-body {
+    color: $color-text-muted;
+  }
+}

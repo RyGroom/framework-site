@@ -1,0 +1,86 @@
+// ==========================================================================
+// Block — Pricing
+// ==========================================================================
+@use 'variables' as *;
+
+.c-pricing__intro {
+  max-width: 640px;
+  margin-bottom: $space-6;
+}
+
+.c-pricing__heading {
+  margin-bottom: $space-2;
+  font-size: min(10vw, 56px);
+}
+
+.c-pricing__plan {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: $space-4;
+  background: $color-card;
+  border: 1px solid $color-divider;
+}
+
+.c-pricing__name {
+  margin-bottom: $space-2;
+  font-size: 1.75rem;
+}
+
+.c-pricing__price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: $space-2;
+}
+
+.c-pricing__amount {
+  font-family: $font-heading;
+  font-size: 3.25rem;
+  font-weight: 700;
+  line-height: 1;
+  color: $color-navy;
+}
+
+.c-pricing__period {
+  font-size: $font-size-sm;
+  color: $color-navy-400;
+}
+
+.c-pricing__summary {
+  margin-bottom: $space-3;
+}
+
+.c-pricing__items {
+  flex: 1;
+  margin: 0 0 $space-4;
+  padding: $space-3 0 0;
+  border-top: 1px solid $color-divider;
+  list-style: none;
+
+  li {
+    position: relative;
+    margin-bottom: 10px;
+    padding-left: 28px;
+  }
+
+  .bi {
+    position: absolute;
+    left: 0;
+    top: 1px;
+    color: $color-navy-700;
+    font-size: 1.15rem;
+  }
+}
+
+.c-pricing__button {
+  width: 100%;
+}
+
+.c-pricing__note {
+  max-width: 640px;
+  margin: $space-4 auto 0;
+  font-size: $font-size-sm;
+  color: $color-navy-700;
+}
