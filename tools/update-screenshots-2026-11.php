@@ -1,8 +1,8 @@
 <?php
 /**
- * One-off content change (Nov 9 2026): seven app screenshots went out of date
+ * One-off content change (Nov 9 2026): nine app screenshots went out of date
  * after the app's style fixes (back arrow level with the page name, status
- * line, crew photo tiles, invoice actions). The replacements live next to this
+ * line, crew photo tiles, invoice actions, white unticked checkboxes). The replacements live next to this
  * file in screenshots-2026-11/. This adds each one to the media library and
  * points the page section at it, keeping the old image's alt text.
  *
@@ -34,8 +34,10 @@ $skipped = 0;
 // page slug => [ section image meta key, old file name (no extension), new file ]
 $swaps = [
     [ 'home', 'sections_0_image', 'framework-app-hero', 'framework-app-hero-2026-11.png' ],
+    [ 'crew-app', 'sections_0_image', 'crew-app-hero', 'crew-app-hero-2026-11.png' ],
     [ 'crew-app', 'sections_2_image', 'crew-app-job', 'crew-app-job-2026-11.png' ],
     [ 'crew-app', 'sections_3_image', 'crew-app-proof', 'crew-app-proof-2026-11.png' ],
+    [ 'crew-app', 'sections_4_image', 'crew-app-offline', 'crew-app-offline-2026-11.png' ],
     [ 'estimates-invoices', 'sections_3_image', 'estimates-paid', 'estimates-paid-2026-11.png' ],
     [ 'scheduling-dispatch', 'sections_4_image', 'scheduling-series', 'scheduling-series-2026-11.png' ],
     [ 'clients-office', 'sections_0_image', 'clients-hero', 'clients-hero-2026-11.png' ],
