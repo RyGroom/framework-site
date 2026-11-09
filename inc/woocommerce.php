@@ -135,6 +135,17 @@ add_action( 'init', function (): void {
             }
         }
     }
+
+    // A new company (the app links it to no store account) arriving while this
+    // browser is still signed in to the store account from an earlier sign-up:
+    // checkout filled in that account's email, address and saved card, and the
+    // purchase would have gone on it. Sign it out so the new company starts
+    // fresh. Shop admins stay signed in (it would also end their wp-admin
+    // session); checkout tells them instead. See framework_checkout_account_notice().
+    if ( ! empty( $GLOBALS['framework_new_company'] ) && is_user_logged_in()
+        && ( $_GET[ FRAMEWORK_CUSTOMER_PARAM ] ?? '' ) === '' && ! current_user_can( 'manage_woocommerce' ) ) {
+        wp_logout();
+    }
 } );
 
 /**

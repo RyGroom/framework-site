@@ -106,8 +106,30 @@ add_filter( 'render_block_woocommerce/checkout', function ( string $content ): s
         $line = sprintf( __( '%1$s · %2$s, starting today', 'framework' ), $plan['name'], $plan['recurring'] );
     }
 
-    return '<p class="c-checkout-lead">' . esc_html( $line ) . '</p>' . $content;
+    return '<p class="c-checkout-lead">' . esc_html( $line ) . '</p>' . framework_checkout_account_notice() . $content;
 } );
+
+/**
+ * A shop admin who came from the app isn't signed out (see the init hook in
+ * inc/woocommerce.php), so say whose account this purchase goes on.
+ */
+function framework_checkout_account_notice(): string {
+    if ( ! is_user_logged_in() || ! current_user_can( 'manage_woocommerce' ) || framework_store_ref() === ''
+        || framework_store_expected_customer() === get_current_user_id() ) {
+        return '';
+    }
+
+    return sprintf(
+        '<p class="c-store-signin woocommerce-info">%s <a href="%s">%s</a></p>',
+        esc_html( sprintf(
+            /* translators: %s: the signed-in account's email */
+            __( "You're signed in to the store as %s, so this subscription will go on that account.", 'framework' ),
+            wp_get_current_user()->user_email
+        ) ),
+        esc_url( wc_logout_url( home_url( '/pricing/' ) ) ),
+        esc_html__( 'Sign out to use a different email', 'framework' )
+    );
+}
 
 // ── Fields ─────────────────────────────────────────────────────────────────
 // The store never uses a phone number, and a note means nothing on a
