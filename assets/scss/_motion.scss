@@ -1,0 +1,59 @@
+// ==========================================================================
+// Motion — sections settle into place as they scroll into view, once.
+//
+// Only active under html.has-motion, which a head script adds when JavaScript
+// runs and the visitor hasn't asked for reduced motion (see functions.php).
+// Without it every element below renders exactly as normal.
+// Keep this list in step with REVEAL_TARGETS in assets/js/main.js.
+// ==========================================================================
+@use 'variables' as *;
+
+$reveal-targets: '.c-hero .row > *, .c-section__head, .c-pricing__intro, .c-pricing__note, .c-split .row > *, .c-feature-grid .row > *, .c-feature-list .row > *, .c-pricing .row > *, .c-steps ol > li, .c-faq .col-lg-8 > *, .c-text .c-content__inner, .c-cta .container > *';
+
+.has-motion :is(#{$reveal-targets}) {
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 500ms ease-out,
+    transform 600ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+
+  &.is-revealed {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+// Hover: the "See how it works" arrow nudges along.
+.bi-arrow-right {
+  display: inline-block;
+  transition: transform 200ms ease-out;
+}
+
+.c-feature-grid__item:hover .c-feature-grid__more .bi,
+.c-feature-list__more:hover .bi,
+.c-feature-list__more:focus-visible .bi,
+.c-nav-panel__all a:hover .bi {
+  transform: translateX(4px);
+}
+
+// The hero's orange highlight swipes in left to right, like a marker, just after
+// the heading has settled. Without motion it's simply drawn in full.
+.has-motion .c-hero__mark {
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  transition: background-size 650ms cubic-bezier(0.65, 0, 0.35, 1) 450ms;
+}
+
+.has-motion .is-revealed .c-hero__mark {
+  background-size: 100% 100%;
+}
+
+// Card titles that link somewhere: an orange underline draws in from the left on
+// hover (and back out), the same marker motion as the hero highlight.
+.c-feature-grid__title a,
+.c-feature-list__title a {
+  padding-bottom: 0.08em;
+  background: linear-gradient($color-orange, $color-orange) no-repeat left bottom / 0% 2px;
+  transition: background-size 300ms cubic-bezier(0.65, 0, 0.35, 1);
+}

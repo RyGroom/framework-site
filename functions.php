@@ -53,6 +53,18 @@ function framework_assets(): void {
 }
 add_action( 'wp_enqueue_scripts', 'framework_assets' );
 
+/**
+ * Scroll-in motion (assets/scss/_motion.scss + main.js) is switched on before the
+ * first paint by adding `has-motion` to <html> — and only then is anything hidden.
+ * No JavaScript: the class never appears, so all content shows as normal. Reduced
+ * motion or no IntersectionObserver: the class isn't added either. If main.js
+ * hasn't taken over within 3 seconds (blocked or failed to load), the class comes
+ * off again so nothing can stay hidden.
+ */
+add_action( 'wp_head', function (): void {
+    echo "<script>(function(e){if(!('IntersectionObserver' in window)||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;e.classList.add('has-motion');setTimeout(function(){if(!window.frameworkReveal)e.classList.remove('has-motion');},3000);})(document.documentElement);</script>\n";
+}, 1 );
+
 // Let the Google Fonts and Bootstrap CDN hosts connect early.
 add_filter( 'wp_resource_hints', function ( array $urls, string $relation ): array {
     if ( $relation === 'preconnect' ) {

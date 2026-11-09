@@ -64,3 +64,24 @@ a {
     animation: none !important;
   }
 }
+
+// Checklist tick: a heavy orange tick, sized to sit on the first line of a list
+// item (so wrapped items keep the tick at the top). Used by the Text + image and
+// All features blocks.
+.c-tick {
+  flex: 0 0 auto;
+  margin-top: 0.2em;
+  color: $color-orange-600;
+  font-size: 1.3rem;
+  line-height: 1;
+
+  &::before {
+    -webkit-text-stroke: 1.1px currentColor; // the icon font draws it too thin for body text
+  }
+}
+
+// "See how it works →" style arrows: the icon font's arrow is a hairline next to
+// bold condensed caps, so thicken it to match.
+.bi-arrow-right::before {
+  -webkit-text-stroke: 1px currentColor;
+}

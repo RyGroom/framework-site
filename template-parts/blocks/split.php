@@ -17,7 +17,7 @@ $image      = get_sub_field( 'image' );
                 <?php if ( have_rows( 'bullets' ) ) : ?>
                     <ul class="c-split__list list-unstyled mt-4 mb-0">
                         <?php while ( have_rows( 'bullets' ) ) : the_row(); ?>
-                            <li><i class="bi bi-check2" aria-hidden="true"></i><?php echo esc_html( get_sub_field( 'item' ) ); ?></li>
+                            <li><i class="bi bi-check-lg c-tick" aria-hidden="true"></i><?php echo esc_html( get_sub_field( 'item' ) ); ?></li>
                         <?php endwhile; ?>
                     </ul>
                 <?php endif; ?>

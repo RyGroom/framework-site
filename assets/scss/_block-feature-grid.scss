@@ -32,10 +32,9 @@
   text-decoration: none;
 }
 
-.c-feature-grid__item:hover .c-feature-grid__title a {
-  text-decoration: underline;
-  text-decoration-color: $color-orange;
-  text-decoration-thickness: 2px;
+.c-feature-grid__item:hover .c-feature-grid__title a,
+.c-feature-grid__title a:focus-visible {
+  background-size: 100% 2px;
 }
 
 .c-feature-grid__more {

@@ -43,9 +43,7 @@
 
     &:hover,
     &:focus-visible {
-      text-decoration: underline;
-      text-decoration-color: $color-orange;
-      text-decoration-thickness: 2px;
+      background-size: 100% 2px;
     }
   }
 }
@@ -55,8 +53,8 @@
 
   li {
     display: flex;
-    gap: $space-1;
-    align-items: baseline;
+    gap: 0.75rem;
+    align-items: flex-start;
     padding: 0.4rem 0;
     border-top: 1px solid $color-divider;
 
@@ -65,10 +63,6 @@
     }
   }
 
-  .bi {
-    color: $color-orange-600;
-    font-size: 1.1rem;
-  }
 }
 
 .c-feature-list__tag {
@@ -101,7 +95,4 @@
     color: $color-orange-600;
   }
 
-  &:hover .bi {
-    margin-left: 0.4rem;
-  }
 }

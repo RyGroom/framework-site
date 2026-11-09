@@ -34,7 +34,7 @@ $intro      = get_sub_field( 'intro' );
                                 <ul class="c-feature-list__items list-unstyled mb-0">
                                     <?php while ( have_rows( 'items' ) ) : the_row(); ?>
                                         <li>
-                                            <i class="bi bi-check2" aria-hidden="true"></i>
+                                            <i class="bi bi-check-lg c-tick" aria-hidden="true"></i>
                                             <span>
                                                 <?php echo esc_html( get_sub_field( 'item' ) ); ?>
                                                 <?php if ( get_sub_field( 'optional' ) ) : ?><span class="c-feature-list__tag">Optional</span><?php endif; ?>
