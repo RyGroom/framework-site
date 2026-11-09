@@ -108,7 +108,7 @@ $framework_icon = static function ( string $name ): string {
 			</p>
 
 			<p class="c-order__continue">
-				<a class="btn btn-primary c-order__btn" href="<?php echo esc_url( framework_app_url( '/subscribe?from_checkout=1' ) ); ?>"><?php esc_html_e( 'Continue to Framework', 'framework' ); ?></a>
+				<a class="btn btn-primary c-order__btn" href="<?php echo esc_url( framework_app_url( '/subscribe?from_checkout=1&order=' . $order->get_id() ) ); ?>"><?php esc_html_e( 'Continue to Framework', 'framework' ); ?></a>
 			</p>
 
 			<dl class="c-order__facts woocommerce-order-overview woocommerce-thankyou-order-details order_details">

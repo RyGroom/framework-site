@@ -201,6 +201,14 @@ add_action( 'woocommerce_checkout_subscription_created', 'framework_save_ref_on_
 add_action( 'woocommerce_checkout_order_processed', 'framework_save_ref_on_order_subscriptions' );
 add_action( 'woocommerce_store_api_checkout_order_processed', 'framework_save_ref_on_order_subscriptions' );
 
+// Tell the app about a subscription as soon as the request that changed it
+// ends, not from the background queue. That queue only runs when someone
+// next loads a page, so a new company could sit on the app's "setting up"
+// screen for minutes. (The app also asks the store itself while it waits.)
+add_filter( 'woocommerce_webhook_deliver_async', function ( $async, $webhook = null ) {
+    return is_object( $webhook ) && str_starts_with( (string) $webhook->get_topic(), 'subscription.' ) ? false : $async;
+}, 10, 2 );
+
 // There's no cart page to view, so "added to your cart" only gets in the way.
 add_filter( 'wc_add_to_cart_message_html', '__return_empty_string' );
 
