@@ -44,7 +44,7 @@ $email = function_exists( 'get_field' ) ? get_field( 'contact_email', 'option' )
         </div>
 
         <div class="c-footer__bottom d-flex flex-column flex-md-row justify-content-between gap-2 mt-5 pt-4">
-            <p class="mb-0">&copy; <?php echo esc_html( wp_date( 'Y' ) ); ?> <?php bloginfo( 'name' ); ?></p>
+            <p class="mb-0">&copy; <?php echo esc_html( wp_date( 'Y' ) ); ?> Framework Solutions LLC</p>
             <?php
             wp_nav_menu( [
                 'theme_location' => 'legal',

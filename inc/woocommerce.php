@@ -333,3 +333,23 @@ add_action( 'woocommerce_thankyou', function (): void {
 
     // The "Continue to Framework" button is in woocommerce/checkout/thankyou.php.
 }, 1 );
+
+// Whole-dollar prices show as "$59", not "$59.00" (cents still show when
+// there are any, like a tax line).
+add_filter( 'woocommerce_price_trim_zeros', '__return_true' );
+
+// The app changes a subscription's plan or extra logins through the REST API
+// and sends new line totals at full price. Woo doesn't re-run coupons on its
+// own, so a customer on a free coupon (lifetime, or one free year) would
+// start paying for whatever they added. Re-apply the subscription's own
+// coupons after any line-item change so the discount covers it too.
+add_action( 'woocommerce_rest_insert_shop_subscription_object', function ( $subscription, $request, $creating ): void {
+    if ( $creating || ! isset( $request['line_items'] ) || ! $subscription instanceof WC_Subscription ) {
+        return;
+    }
+    if ( ! $subscription->get_items( 'coupon' ) ) {
+        return;
+    }
+    $subscription->recalculate_coupons();
+    $subscription->add_order_note( 'Coupons re-applied after a plan or login change from the app.' );
+}, 10, 3 );

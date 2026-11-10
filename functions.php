@@ -9,6 +9,7 @@ require_once get_template_directory() . '/inc/acf-fields.php';
 require_once get_template_directory() . '/inc/texting-feature.php';
 require_once get_template_directory() . '/inc/woocommerce.php';
 require_once get_template_directory() . '/inc/woocommerce-checkout.php';
+require_once get_template_directory() . '/inc/google-tag.php';
 
 /**
  * Theme setup.
@@ -48,7 +49,7 @@ function framework_assets(): void {
 
     $js = ( defined( 'WP_DEBUG' ) && WP_DEBUG ) ? 'main.js' : 'main.min.js';
     if ( file_exists( "$dir/assets/js/$js" ) ) {
-        wp_enqueue_script( 'framework', "$uri/assets/js/$js", [], filemtime( "$dir/assets/js/$js" ), true );
+        wp_enqueue_script( 'framework', "$uri/assets/js/$js", [ 'bootstrap' ], filemtime( "$dir/assets/js/$js" ), true );
     }
 }
 add_action( 'wp_enqueue_scripts', 'framework_assets' );

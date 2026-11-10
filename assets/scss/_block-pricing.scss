@@ -20,6 +20,29 @@
   padding: $space-4;
   background: $color-card;
   border: 1px solid $color-divider;
+  position: relative;
+
+  // The plan picked on the ads landing page (?plan=, from the app's subscribe page).
+  &.is-pick {
+    border: 2px solid $color-navy;
+    padding: calc(#{$space-4} - 1px);
+  }
+}
+
+.c-pricing__pick {
+  position: absolute;
+  top: -0.8rem;
+  left: $space-4;
+  margin: 0;
+  padding: 0.25rem 0.625rem;
+  background: $color-orange;
+  color: $color-navy;
+  font-family: $font-heading;
+  font-weight: 700;
+  font-size: 0.8125rem;
+  line-height: 1.2;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .c-pricing__name {

@@ -297,6 +297,39 @@ h4,
   color: #e69404;
 }
 
+html.is-nav-open,
+html.is-nav-open body {
+  overflow: hidden;
+}
+
+@media (max-width: 991.98px) {
+  .c-header .navbar-collapse {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: calc(100vh - 72px);
+    max-height: calc(100dvh - 72px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    padding: 0.5rem 0.75rem 0;
+    background: #fffdf9;
+    border-top: 1px solid rgba(18, 46, 80, 0.14);
+    border-bottom: 1px solid rgba(18, 46, 80, 0.14);
+    box-shadow: 0 24px 48px rgba(18, 46, 80, 0.16);
+  }
+}
+@media (max-width: 991.98px) and (min-width: 576px) {
+  .c-header .navbar-collapse {
+    padding-inline: calc((100% - 540px) / 2 + 0.75rem);
+  }
+}
+@media (max-width: 991.98px) and (min-width: 768px) {
+  .c-header .navbar-collapse {
+    padding-inline: calc((100% - 720px) / 2 + 0.75rem);
+  }
+}
 .c-footer {
   padding: 4rem 0 2rem;
   background: #0a1c33;
@@ -363,6 +396,44 @@ h4,
 .c-content__body ul,
 .c-content__body ol {
   margin-bottom: 1.5rem;
+}
+
+.c-sms__form {
+  margin: 1.5rem 0 2.5rem;
+  border: 1px solid rgba(18, 46, 80, 0.14);
+  background: #fffdf9;
+}
+
+.c-sms__missing {
+  margin: 0;
+  padding: 1.25rem;
+}
+
+.c-sms__shot {
+  margin: 1.25rem 0 1.75rem;
+}
+.c-sms__shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid rgba(18, 46, 80, 0.14);
+}
+.c-sms__shot figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: rgba(18, 46, 80, 0.85);
+}
+
+.c-sms__shot--narrow img {
+  max-width: 520px;
+}
+
+.c-sms__text {
+  margin: 0.75rem 0 1.25rem;
+  padding: 0.875rem 1rem;
+  border-left: 3px solid #ffa405;
+  background: #fffdf9;
+  font-size: 0.875rem;
 }
 
 .c-contact {
@@ -715,6 +786,27 @@ h4,
   padding: 2rem;
   background: #fffdf9;
   border: 1px solid rgba(18, 46, 80, 0.14);
+  position: relative;
+}
+.c-pricing__plan.is-pick {
+  border: 2px solid #122e50;
+  padding: calc(2rem - 1px);
+}
+
+.c-pricing__pick {
+  position: absolute;
+  top: -0.8rem;
+  left: 2rem;
+  margin: 0;
+  padding: 0.25rem 0.625rem;
+  background: #ffa405;
+  color: #122e50;
+  font-family: "Barlow Condensed", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 0.8125rem;
+  line-height: 1.2;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .c-pricing__name {

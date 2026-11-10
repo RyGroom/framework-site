@@ -20,7 +20,6 @@
 }
 
 .c-content__body {
-
   h2,
   h3 {
     margin-top: $space-6;
@@ -32,4 +31,47 @@
   ol {
     margin-bottom: $space-3;
   }
+}
+
+// --------------------------------------------------------------------------
+// /sms — the public text-message opt-in page (page-sms.php)
+// --------------------------------------------------------------------------
+.c-sms__form {
+  margin: 1.5rem 0 2.5rem;
+  border: 1px solid $color-divider;
+  background: $color-card;
+}
+
+.c-sms__missing {
+  margin: 0;
+  padding: 1.25rem;
+}
+
+.c-sms__shot {
+  margin: 1.25rem 0 1.75rem;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid $color-divider;
+  }
+
+  figcaption {
+    margin-top: 0.5rem;
+    font-size: $font-size-sm;
+    color: $color-text-muted;
+  }
+}
+
+.c-sms__shot--narrow img {
+  max-width: 520px;
+}
+
+.c-sms__text {
+  margin: 0.75rem 0 1.25rem;
+  padding: 0.875rem 1rem;
+  border-left: 3px solid $color-orange;
+  background: $color-card;
+  font-size: $font-size-sm;
 }

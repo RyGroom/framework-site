@@ -12,6 +12,10 @@ if ( $returning ) {
     $intro        = get_sub_field( 'intro_returning' ) ?: __( 'Choose a plan to turn your account back on. Every plan includes every feature and integration, with nothing extra to unlock. Your price depends on how many people need to log in.', 'framework' );
     $button_label = get_sub_field( 'button_label_returning' ) ?: __( 'Subscribe', 'framework' );
 }
+
+// The plan picked on the ads landing page (/start/), passed on by the app's
+// subscribe page as ?plan=. Only marked; both plans can still be chosen.
+$picked = isset( $_GET['plan'] ) && in_array( $_GET['plan'], [ 'individual', 'crew' ], true ) ? 'framework-' . $_GET['plan'] : '';
 ?>
 <section class="c-section c-section--cream c-pricing">
     <div class="container">
@@ -24,8 +28,10 @@ if ( $returning ) {
         <?php if ( have_rows( 'plans' ) ) : ?>
             <div class="row g-4 justify-content-center">
                 <?php while ( have_rows( 'plans' ) ) : the_row(); ?>
+                    <?php $is_pick = $picked !== '' && (string) get_sub_field( 'sku' ) === $picked; ?>
                     <div class="col-md-6 col-lg-5">
-                        <div class="c-pricing__plan">
+                        <div class="c-pricing__plan<?php echo $is_pick ? ' is-pick' : ''; ?>">
+                            <?php if ( $is_pick ) : ?><p class="c-pricing__pick"><?php esc_html_e( 'Your pick', 'framework' ); ?></p><?php endif; ?>
                             <h2 class="c-pricing__name"><?php echo esc_html( get_sub_field( 'name' ) ); ?></h2>
                             <p class="c-pricing__price">
                                 <span class="c-pricing__amount"><?php echo esc_html( get_sub_field( 'price' ) ); ?></span>

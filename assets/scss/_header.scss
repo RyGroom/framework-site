@@ -175,3 +175,46 @@
     color: $color-orange-600;
   }
 }
+
+// --------------------------------------------------------------------------
+// Phone menu open — the page behind is locked (main.js adds the class), so
+// the menu itself scrolls when it's taller than the screen (Features open).
+// --------------------------------------------------------------------------
+html.is-nav-open,
+html.is-nav-open body {
+  overflow: hidden;
+}
+
+// The open menu hangs below the header over the page instead of growing the
+// header and pushing the content down. It spans the full width; its padding
+// keeps the links lined up with the logo at each of Bootstrap's container widths.
+@media (max-width: 991.98px) {
+  .c-header .navbar-collapse {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    // Never taller than the screen; scrolls inside instead. vh first for
+    // browsers without dvh (older iOS dropped the whole rule, so the menu ran
+    // off the bottom with nothing to scroll). main.js then sets the exact
+    // visible height inline, which also allows for Safari's toolbars.
+    max-height: calc(100vh - #{$header-height});
+    max-height: calc(100dvh - #{$header-height});
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    padding: 0.5rem 0.75rem 0;
+    background: $color-card;
+    border-top: 1px solid $color-divider;
+    border-bottom: 1px solid $color-divider;
+    box-shadow: 0 24px 48px rgba($color-navy, 0.16);
+
+    @media (min-width: 576px) {
+      padding-inline: calc((100% - 540px) / 2 + 0.75rem);
+    }
+
+    @media (min-width: 768px) {
+      padding-inline: calc((100% - 720px) / 2 + 0.75rem);
+    }
+  }
+}

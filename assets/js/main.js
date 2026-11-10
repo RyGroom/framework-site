@@ -60,3 +60,57 @@
   const showAll = () => targets.forEach((el) => el.classList.add('is-revealed'));
   window.addEventListener('beforeprint', showAll);
 })();
+
+// Phone menu open: the page behind it doesn't scroll (html.is-nav-open in
+// _header.scss); the menu scrolls on its own if it's taller than the screen.
+(() => {
+  const nav = document.getElementById('site-nav');
+  if (!nav) {
+    return;
+  }
+  const root = document.documentElement;
+  const header = document.querySelector('[data-header]');
+  const desktop = window.matchMedia('(min-width: 992px)');
+
+  // Cap the menu at exactly the screen space left under the header, measured
+  // from what's actually visible (Safari's toolbars come and go), so the last
+  // links are never hidden below the bottom edge — the menu scrolls instead.
+  const fit = () => {
+    if (desktop.matches) {
+      nav.style.maxHeight = '';
+      return;
+    }
+    const visible = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+    const top = header ? header.getBoundingClientRect().bottom : 0;
+    nav.style.maxHeight = `${Math.max(160, Math.floor(visible - top))}px`;
+  };
+
+  nav.addEventListener('show.bs.collapse', () => {
+    if (!desktop.matches) {
+      root.classList.add('is-nav-open');
+      fit();
+    }
+  });
+  nav.addEventListener('hide.bs.collapse', () => root.classList.remove('is-nav-open'));
+  window.addEventListener('resize', fit);
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', fit);
+  }
+
+  // Widening to desktop shows the links inline, so nothing is "open" any more.
+  desktop.addEventListener('change', (e) => {
+    if (e.matches) {
+      root.classList.remove('is-nav-open');
+    }
+    fit();
+  });
+
+  // An in-page link (#features) closes the menu, so the page it jumps to
+  // isn't left locked behind an open menu.
+  nav.addEventListener('click', (e) => {
+    const link = e.target.closest('a[href*="#"]:not([data-bs-toggle])');
+    if (link && nav.classList.contains('show') && window.bootstrap) {
+      window.bootstrap.Collapse.getOrCreateInstance(nav).hide();
+    }
+  });
+})();
