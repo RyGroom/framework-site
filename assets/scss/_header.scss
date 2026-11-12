@@ -180,8 +180,12 @@
 // Phone menu open — the page behind is locked (main.js adds the class), so
 // the menu itself scrolls when it's taller than the screen (Features open).
 // --------------------------------------------------------------------------
-html.is-nav-open,
-html.is-nav-open body {
+// Only <html>: that hands the lock to the viewport. Putting overflow on
+// <body> too turns body into its own scroll box, the sticky header then
+// sticks to that instead of the screen, and opening the menu partway down
+// the page throws header + menu back to the top, out of sight, with the
+// page locked.
+html.is-nav-open {
   overflow: hidden;
 }
 
