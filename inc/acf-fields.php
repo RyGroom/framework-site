@@ -67,7 +67,7 @@ add_action( 'acf/init', function (): void {
                             'type' => 'repeater', 'layout' => 'block', 'button_label' => 'Add plan',
                             'sub_fields' => [
                                 $text( 'pricing_plan', 'name', 'Plan name' ),
-                                $text( 'pricing_plan', 'price', 'Price', [ 'instructions' => 'e.g. $59. Must match the store.' ] ),
+                                $text( 'pricing_plan', 'price', 'Price', [ 'instructions' => 'e.g. $69. Must match the store.' ] ),
                                 $text( 'pricing_plan', 'period', 'Period', [ 'instructions' => 'e.g. per month' ] ),
                                 $text( 'pricing_plan', 'period_returning', 'Period for returning companies', [ 'instructions' => 'Shown to a company that has subscribed before, which gets no free month. Leave empty for "per month".' ] ),
                                 $area( 'pricing_plan', 'summary', 'Who it is for' ),
