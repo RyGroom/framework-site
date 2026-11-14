@@ -175,7 +175,7 @@ $lp_jsonld = [
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{margin:0;background:var(--cream);color:var(--navy);font:400 16px/1.5 "Barlow",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
+body{margin:0;overflow-x:clip;background:var(--cream);color:var(--navy);font:400 16px/1.5 "Barlow",system-ui,-apple-system,"Segoe UI",sans-serif;-webkit-font-smoothing:antialiased}
 img{max-width:100%}
 a{color:var(--navy);text-decoration:underline;text-decoration-color:rgba(18,46,80,.3);text-underline-offset:3px}
 a:hover{text-decoration-color:var(--navy)}
@@ -240,13 +240,19 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 .lp-points li{display:flex;gap:10px;font-size:16px;line-height:1.4;margin-top:10px}
 .lp-points strong{font-weight:600}
 .lp-check{flex:none;margin-top:1px;color:var(--navy)}
-.lp-panel{background:var(--navy);padding:28px}
+.lp-panel{position:relative;padding:40px 0 40px 32px}
+/* As on the main site (.c-hero__media): a navy panel that starts 72px in from
+   the screenshot's edge and runs off the side of the page, with the logo's
+   orange corner. The screenshot overhangs the panel onto the page. */
+.lp-panel::before{content:"";position:absolute;inset:0 -50vw 0 72px;background:var(--navy)}
+.lp-panel::after{content:"";position:absolute;top:0;left:72px;width:52px;height:52px;background:var(--amber);clip-path:polygon(0 0,100% 0,0 100%)}
+.lp-panel > *{position:relative;z-index:1}
 .lp-panel .lp-browser{box-shadow:0 18px 40px rgba(0,0,0,.3)}
 .lp-panel .lp-browser{border-radius:8px}
 .lp-panel .lp-browser__bar{height:20px;padding:0 10px}
 .lp-panel .lp-browser__bar i{width:7px;height:7px}
 .lp-panel .lp-browser__bar::after{height:9px}
-.lp-phones{display:flex;justify-content:center;align-items:flex-start;gap:22px;padding:32px 24px}
+.lp-phones{display:flex;justify-content:center;align-items:flex-start;gap:22px}
 .lp-phones .lp-phone:first-child{flex:0 1 230px}
 .lp-phones .lp-phone:last-child{flex:0 1 200px;margin-top:48px}
 
@@ -306,6 +312,10 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 @media (min-width:900px){
   .lp-row{grid-template-columns:repeat(2,minmax(0,1fr))}
   .lp-row--flip .lp-row__text{order:2}
+  /* A panel on the left runs off the left edge, its orange corner on the inside. */
+  .lp-row--flip .lp-panel{padding:40px 32px 40px 0}
+  .lp-row--flip .lp-panel::before{inset:0 72px 0 -50vw}
+  .lp-row--flip .lp-panel::after{left:auto;right:72px;clip-path:polygon(0 0,100% 0,100% 100%)}
 }
 @media (max-width:640px){
   :root{--pad:20px}
@@ -328,8 +338,10 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
   .lp-features{padding-top:48px;padding-bottom:8px}
   .lp-rows{gap:48px;margin-top:32px}
   .lp-row h3{font-size:30px}
-  .lp-panel{padding:16px}
-  .lp-phones{padding:20px 16px;gap:14px}
+  .lp-panel{padding:24px 0 24px 16px}
+  .lp-panel::before{left:40px}
+  .lp-panel::after{left:40px;width:36px;height:36px}
+  .lp-phones{gap:14px}
   .lp-phones .lp-phone{flex:0 0 45%!important}
   .lp-phones .lp-phone:last-child{margin-top:36px}
   .lp-pricing{padding-top:48px;padding-bottom:48px}
