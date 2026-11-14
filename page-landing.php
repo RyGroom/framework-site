@@ -383,7 +383,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 
 <header class="lp-header lp-navy">
     <div class="lp-wrap">
-        <img class="lp-logo" src="<?php echo esc_url( $lp_theme . '/assets/img/framework-wordmark-reverse.svg' ); ?>" alt="Framework" width="168" height="20">
+        <img class="lp-logo" src="<?php echo esc_url( $lp_theme . '/assets/img/framework-wordmark-accent.svg' ); ?>" alt="Framework" width="168" height="20">
         <?php echo $lp_button( 'header', 'auto', '', '<span class="lp-long">Start your free month</span><span class="lp-short">Start free</span>' ); // phpcs:ignore WordPress.Security.EscapeOutput -- built and escaped above ?>
     </div>
 </header>
