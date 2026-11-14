@@ -313,7 +313,10 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
   .lp-row{grid-template-columns:repeat(2,minmax(0,1fr))}
   .lp-row--flip .lp-row__text{order:2}
   /* A panel on the left runs off the left edge, its orange corner on the inside. */
-  .lp-row--flip .lp-panel{padding:40px 32px 40px 0}
+  /* The phones sit inside the panel (the browser shots overhang theirs):
+     clear of its inner edge and centred on the navy. */
+  .lp-row--flip .lp-panel{padding:48px 108px 48px 36px;margin-left:calc(-1 * max(var(--pad), (100vw - 1180px) / 2))}
+  .lp-row--flip .lp-phones .lp-phone{min-width:0}
   .lp-row--flip .lp-panel::before{inset:0 72px 0 -50vw}
   .lp-row--flip .lp-panel::after{left:auto;right:72px;clip-path:polygon(0 0,100% 0,100% 100%)}
 }
