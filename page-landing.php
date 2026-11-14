@@ -114,7 +114,7 @@ $lp_points = [
 $lp_faqs = [
     [ 'How does the free month work?', 'You pay $0 today. Your first charge is 30 days after you sign up, at your plan’s price. Cancel any time before then and you won’t be charged.' ],
     [ 'Does the crew app work without signal?', 'Yes. Crews can clock in, finish jobs and take photos with no signal. Everything is saved on the phone and syncs when they’re back in range.' ],
-    [ 'Do my crews need to download an app?', 'No. Crews sign in from their phone’s web browser and can add it to their home screen. It works on iPhone and Android.' ],
+    [ 'Do my crews need to download an app?', 'No. Framework runs in your phone’s browser on iPhone and Android, and can be added to your home screen like an app. App Store and Google Play versions are on the way.' ],
     [ 'What if I add more people later?', 'On the Crew plan, extra logins are $15 a month each. Add or remove them any time and your next bill adjusts.' ],
     [ 'Can I cancel anytime?', 'Yes. There’s no contract. Cancel from Settings and you keep access until the end of the period you’ve paid for.' ],
 ];
