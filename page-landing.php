@@ -271,6 +271,13 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 .lp-plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:20px;margin-top:20px}
 .lp-plan{position:relative;border:1px solid var(--line);background:var(--card);padding:26px 26px 24px;display:flex;flex-direction:column}
 .lp-plan.is-pick{border:2px solid var(--navy);padding:25px 25px 23px}
+/* Stacked (phones): the plan that fits the chosen number of logins moves to the
+   top, right under the calculator, so moving the slider visibly changes the
+   card in view. Side by side, both are visible and keep their order. */
+@media (max-width:679px){
+  .lp-plan.is-pick{order:-1;animation:lp-pick-in .3s ease-out}
+}
+@keyframes lp-pick-in{from{opacity:.35;transform:translateY(10px)}}
 .lp-plan__fit{position:absolute;top:-13px;left:24px;background:var(--amber);color:var(--navy);font-size:13px;font-weight:600;padding:4px 10px}
 .lp-plan:not(.is-pick) .lp-plan__fit{display:none}
 .lp-plan__name{margin:0;font-size:20px;font-weight:600}
@@ -367,7 +374,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
   .lp-header .lp-long{display:none}
   .lp-header .lp-short{display:inline}
 }
-@media (prefers-reduced-motion:reduce){.lp-sticky,.lp-sticky.is-on,.lp-faq button svg,.lp-cta{transition:none}}
+@media (prefers-reduced-motion:reduce){.lp-sticky,.lp-sticky.is-on,.lp-faq button svg,.lp-cta{transition:none}.lp-plan.is-pick{animation:none}}
 </style>
 <noscript><style>.lp-faq__answer[hidden]{display:block}</style></noscript>
 <script type="application/ld+json"><?php echo wp_json_encode( $lp_jsonld, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ); ?></script>
