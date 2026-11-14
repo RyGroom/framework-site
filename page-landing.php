@@ -209,15 +209,16 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 .lp-fine{margin:14px 0 0;font-size:15px;color:var(--on-navy-2)}
 .lp-hero__visual{position:relative;padding:0 70px 56px 0;align-self:end}
 /* Device frames match the main site's screenshots: a light browser window
-   with round dots and an address pill, and a rounded navy phone. */
+   with round dots and an address pill, and a rounded phone with the same
+   near-black navy bezel (#0a1c33, sampled from the main site's images). */
 .lp-browser{background:var(--card);border-radius:10px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.35)}
 .lp-browser__bar{display:flex;align-items:center;gap:6px;height:26px;padding:0 12px;background:#e8e3da}
 .lp-browser__bar i{display:block;flex:none;width:9px;height:9px;border-radius:50%;background:#cfc8bd}
 .lp-browser__bar::after{content:"";flex:0 1 38%;height:11px;margin-left:12px;border-radius:6px;background:#f3efe8}
 .lp-shot{display:block;width:100%;height:auto}
-.lp-phone{background:#0f2744;padding:8px;border-radius:30px;box-shadow:0 0 0 1px rgba(246,241,233,.16),0 18px 40px rgba(0,0,0,.35)}
+.lp-phone{background:#0a1c33;padding:8px;border-radius:30px;box-shadow:0 18px 40px rgba(0,0,0,.35)}
 .lp-phone__screen{overflow:hidden;border-radius:22px;aspect-ratio:390/760}
-.lp-hero .lp-phone{position:absolute;box-sizing:content-box;right:0;bottom:20px;width:34%;min-width:150px;max-width:200px;box-shadow:0 0 0 1px rgba(246,241,233,.16),0 24px 50px rgba(0,0,0,.45)}
+.lp-hero .lp-phone{position:absolute;box-sizing:content-box;right:0;bottom:20px;width:34%;min-width:150px;max-width:200px;box-shadow:0 24px 50px rgba(0,0,0,.45)}
 .lp-hero .lp-phone__screen{aspect-ratio:390/700}
 
 .lp-trades{background:var(--card);border-bottom:1px solid var(--line-soft)}
