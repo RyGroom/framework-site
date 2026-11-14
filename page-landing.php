@@ -208,12 +208,6 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 .lp-hero__actions a:not(.lp-cta){color:var(--on-navy);font-size:16px;text-decoration-color:rgba(246,241,233,.4);display:inline-flex;align-items:center;min-height:44px}
 .lp-fine{margin:14px 0 0;font-size:15px;color:var(--on-navy-2)}
 .lp-hero__visual{position:relative;padding:0 70px 56px 0;align-self:end}
-/* Like the main site's hero: a panel behind the shots that runs off the right
-   edge of the page, with the logo's orange corner. The hero is navy here, so
-   the panel is a lighter navy. */
-.lp-hero__visual::before{content:"";position:absolute;inset:-36px -50vw 0 72px;background:#1c3a5f}
-.lp-hero__visual::after{content:"";position:absolute;top:-36px;left:72px;width:52px;height:52px;background:var(--amber);clip-path:polygon(0 0,100% 0,0 100%)}
-.lp-hero .lp-browser{position:relative;z-index:1}
 /* Device frames match the main site's screenshots: a light browser window
    with round dots and an address pill, and a rounded phone with the same
    near-black navy bezel (#0a1c33, sampled from the main site's images). */
@@ -224,7 +218,7 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 .lp-shot{display:block;width:100%;height:auto}
 .lp-phone{background:#0a1c33;padding:8px;border-radius:30px;box-shadow:0 18px 40px rgba(0,0,0,.35)}
 .lp-phone__screen{overflow:hidden;border-radius:22px;aspect-ratio:390/760}
-.lp-hero .lp-phone{position:absolute;z-index:2;box-sizing:content-box;right:0;bottom:20px;width:34%;min-width:150px;max-width:200px;box-shadow:0 24px 50px rgba(0,0,0,.45)}
+.lp-hero .lp-phone{position:absolute;box-sizing:content-box;right:0;bottom:20px;width:34%;min-width:150px;max-width:200px;box-shadow:0 24px 50px rgba(0,0,0,.45)}
 .lp-hero .lp-phone__screen{aspect-ratio:390/700}
 
 .lp-trades{background:var(--card);border-bottom:1px solid var(--line-soft)}
@@ -322,8 +316,6 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
   .lp-cta{width:100%}
   .lp-header .lp-cta{width:auto}
   .lp-hero__visual{padding:0 26px 40px 0}
-  .lp-hero__visual::before{inset:-24px -50vw 0 36px}
-  .lp-hero__visual::after{top:-24px;left:36px;width:36px;height:36px}
   .lp-hero .lp-phone{bottom:14px}
   .lp-hero .lp-phone{width:30%;min-width:0;padding:5px;border-radius:18px}
   .lp-hero .lp-phone__screen{border-radius:13px}
