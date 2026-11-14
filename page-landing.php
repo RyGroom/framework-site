@@ -207,14 +207,17 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 .lp-hero__actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;margin-top:28px}
 .lp-hero__actions a:not(.lp-cta){color:var(--on-navy);font-size:16px;text-decoration-color:rgba(246,241,233,.4);display:inline-flex;align-items:center;min-height:44px}
 .lp-fine{margin:14px 0 0;font-size:15px;color:var(--on-navy-2)}
-.lp-hero__visual{position:relative;padding:0 70px 40px 0;align-self:end}
-.lp-browser{background:var(--frame);box-shadow:0 24px 60px rgba(0,0,0,.35)}
-.lp-browser__bar{display:flex;align-items:center;gap:6px;height:22px;padding:0 10px}
-.lp-browser__bar i{display:block;width:8px;height:8px;background:rgba(246,241,233,.25)}
+.lp-hero__visual{position:relative;padding:0 70px 56px 0;align-self:end}
+/* Device frames match the main site's screenshots: a light browser window
+   with round dots and an address pill, and a rounded navy phone. */
+.lp-browser{background:var(--card);border-radius:10px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.35)}
+.lp-browser__bar{display:flex;align-items:center;gap:6px;height:26px;padding:0 12px;background:#e8e3da}
+.lp-browser__bar i{display:block;flex:none;width:9px;height:9px;border-radius:50%;background:#cfc8bd}
+.lp-browser__bar::after{content:"";flex:0 1 38%;height:11px;margin-left:12px;border-radius:6px;background:#f3efe8}
 .lp-shot{display:block;width:100%;height:auto}
-.lp-phone{background:var(--frame);padding:7px;box-shadow:0 18px 40px rgba(0,0,0,.35)}
-.lp-phone__screen{overflow:hidden;aspect-ratio:390/760}
-.lp-hero .lp-phone{position:absolute;box-sizing:content-box;right:0;bottom:-10px;width:34%;min-width:150px;max-width:200px;box-shadow:0 24px 50px rgba(0,0,0,.45)}
+.lp-phone{background:#0f2744;padding:8px;border-radius:30px;box-shadow:0 0 0 1px rgba(246,241,233,.16),0 18px 40px rgba(0,0,0,.35)}
+.lp-phone__screen{overflow:hidden;border-radius:22px;aspect-ratio:390/760}
+.lp-hero .lp-phone{position:absolute;box-sizing:content-box;right:0;bottom:20px;width:34%;min-width:150px;max-width:200px;box-shadow:0 0 0 1px rgba(246,241,233,.16),0 24px 50px rgba(0,0,0,.45)}
 .lp-hero .lp-phone__screen{aspect-ratio:390/700}
 
 .lp-trades{background:var(--card);border-bottom:1px solid var(--line-soft)}
@@ -238,8 +241,10 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
 .lp-check{flex:none;margin-top:1px;color:var(--navy)}
 .lp-panel{background:var(--navy);padding:28px}
 .lp-panel .lp-browser{box-shadow:0 18px 40px rgba(0,0,0,.3)}
-.lp-panel .lp-browser__bar{height:18px;padding:0 9px}
+.lp-panel .lp-browser{border-radius:8px}
+.lp-panel .lp-browser__bar{height:20px;padding:0 10px}
 .lp-panel .lp-browser__bar i{width:7px;height:7px}
+.lp-panel .lp-browser__bar::after{height:9px}
 .lp-phones{display:flex;justify-content:center;align-items:flex-start;gap:22px;padding:32px 24px}
 .lp-phones .lp-phone:first-child{flex:0 1 230px}
 .lp-phones .lp-phone:last-child{flex:0 1 200px;margin-top:48px}
@@ -309,8 +314,16 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
   .lp-hero__actions a:not(.lp-cta){justify-content:center}
   .lp-cta{width:100%}
   .lp-header .lp-cta{width:auto}
-  .lp-hero__visual{padding:0 26px 34px 0}
-  .lp-hero .lp-phone{width:30%;min-width:0;padding:5px}
+  .lp-hero__visual{padding:0 26px 40px 0}
+  .lp-hero .lp-phone{bottom:14px}
+  .lp-hero .lp-phone{width:30%;min-width:0;padding:5px;border-radius:18px}
+  .lp-hero .lp-phone__screen{border-radius:13px}
+  .lp-phones .lp-phone{border-radius:24px}
+  .lp-phones .lp-phone__screen{border-radius:17px}
+  .lp-browser{border-radius:7px}
+  .lp-browser__bar{height:18px;padding:0 9px;gap:5px}
+  .lp-browser__bar i{width:6px;height:6px}
+  .lp-browser__bar::after{height:8px;margin-left:8px}
   .lp-features{padding-top:48px;padding-bottom:8px}
   .lp-rows{gap:48px;margin-top:32px}
   .lp-row h3{font-size:30px}
