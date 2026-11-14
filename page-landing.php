@@ -484,8 +484,17 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
                     <span class="lp-plan__fit" data-fit>Best fit for <?php echo esc_html( $lp_seat_label ); ?></span>
                     <h3 class="lp-plan__name"><?php echo esc_html( $lp_name ); ?></h3>
                     <div class="lp-plan__who"><?php echo esc_html( $lp_who ); ?></div>
-                    <div class="lp-plan__price"><strong class="lp-num">$<?php echo (int) $lp_price; ?></strong>/month</div>
-                    <div class="lp-plan__extra"><?php echo esc_html( $lp_extra ); ?></div>
+                    <?php
+                    // Crew: the big price is what the chosen number of logins
+                    // costs (the calculator keeps it in step), not just the base.
+                    $lp_show_price = $lp_key === 'crew' ? $lp_crew_cost : $lp_price;
+                    $lp_extra_now  = max( 0, $lp_seats - FRAMEWORK_LP_CREW_SEATS );
+                    $lp_show_extra = $lp_key === 'crew' && $lp_extra_now
+                        ? FRAMEWORK_LP_CREW_SEATS . ' logins + ' . $lp_extra_now . ' extra at $' . FRAMEWORK_LP_EXTRA_SEAT . '/month each'
+                        : $lp_extra;
+                    ?>
+                    <div class="lp-plan__price"><strong class="lp-num" data-price>$<?php echo (int) $lp_show_price; ?></strong>/month</div>
+                    <div class="lp-plan__extra" data-extra data-base="<?php echo esc_attr( $lp_extra ); ?>"><?php echo esc_html( $lp_show_extra ); ?></div>
                     <ul>
                         <?php foreach ( $lp_list as $lp_item ) : ?>
                             <li><?php echo $lp_check; // phpcs:ignore WordPress.Security.EscapeOutput ?><?php echo esc_html( $lp_item ); ?></li>
@@ -580,6 +589,14 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(-
       card.querySelector('[data-cta]').classList.toggle('lp-cta--ghost', !pick);
       card.querySelector('[data-first]').textContent = '$0 today · then $' + (key === 'crew' ? cost : PRICE_IND) + '/month'
         + (key === 'crew' && extra ? ' for ' + n + ' logins' : '');
+      // The Crew card's big price is the real total for this many logins.
+      if (key === 'crew') {
+        card.querySelector('[data-price]').textContent = '$' + cost;
+        var extraLine = card.querySelector('[data-extra]');
+        extraLine.textContent = extra
+          ? CREW_SEATS + ' logins + ' + extra + ' extra at $' + EXTRA + '/month each'
+          : extraLine.getAttribute('data-base');
+      }
     });
     document.querySelectorAll('[data-plan="auto"]').forEach(function (a) { setPlan(a, crew ? 'crew' : 'individual'); });
   }
