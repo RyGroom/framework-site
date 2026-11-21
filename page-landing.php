@@ -57,20 +57,21 @@ $lp_default_plan = FRAMEWORK_LP_DEFAULT_SEATS > 1 ? 'crew' : 'individual';
 $lp_noindex = defined( 'FRAMEWORK_LANDING_NOINDEX' ) ? (bool) FRAMEWORK_LANDING_NOINDEX : true;
 $lp_theme   = get_template_directory_uri();
 $lp_img     = $lp_theme . '/assets/img/landing/';
+$lp_v       = '?v=20261121'; // bump when the screenshots are replaced, so browsers fetch the new files
 $lp_font    = $lp_theme . '/assets/fonts/';
 $lp_url     = get_permalink();
 
 /** A <picture> with AVIF and WebP at 1x/2x widths. $wide: 720/1440 desktop shot, else 390/780 phone shot. */
-$lp_picture = static function ( string $name, string $alt, bool $wide, string $sizes, bool $hero = false ) use ( $lp_img ): string {
+$lp_picture = static function ( string $name, string $alt, bool $wide, string $sizes, bool $hero = false ) use ( $lp_img, $lp_v ): string {
     [ $w1, $w2, $w, $h ] = $wide ? [ 720, 1440, 1440, 900 ] : [ 390, 780, 390, 844 ];
-    $set = static fn ( string $ext ) => esc_attr( "{$lp_img}{$name}.{$ext} {$w1}w, {$lp_img}{$name}@2x.{$ext} {$w2}w" );
+    $set = static fn ( string $ext ) => esc_attr( "{$lp_img}{$name}.{$ext}{$lp_v} {$w1}w, {$lp_img}{$name}@2x.{$ext}{$lp_v} {$w2}w" );
 
     return sprintf(
         '<picture><source type="image/avif" srcset="%1$s" sizes="%3$s"><source type="image/webp" srcset="%2$s" sizes="%3$s"><img class="lp-shot" src="%4$s" alt="%5$s" width="%6$d" height="%7$d" %8$s></picture>',
         $set( 'avif' ),
         $set( 'webp' ),
         esc_attr( $sizes ),
-        esc_url( "{$lp_img}{$name}.webp" ),
+        esc_url( "{$lp_img}{$name}.webp{$lp_v}" ),
         esc_attr( $alt ),
         $w,
         $h,
@@ -154,7 +155,7 @@ $lp_jsonld = [
 <meta property="og:title" content="<?php echo esc_attr( $lp_title ); ?> | Framework">
 <meta property="og:description" content="<?php echo esc_attr( $lp_description ); ?>">
 <meta property="og:url" content="<?php echo esc_url( $lp_url ); ?>">
-<meta property="og:image" content="<?php echo esc_url( $lp_img . 'og-hero-office.jpg' ); ?>">
+<meta property="og:image" content="<?php echo esc_url( $lp_img . 'og-hero-office.jpg' . $lp_v ); ?>">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="750">
 <meta name="twitter:card" content="summary_large_image">

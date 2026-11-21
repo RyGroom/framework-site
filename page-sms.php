@@ -14,6 +14,7 @@ get_header();
 
 $framework_embed = (string) get_post_meta( get_the_ID(), 'framework_sms_demo_embed', true );
 $framework_img   = get_template_directory_uri() . '/assets/img/sms/';
+$framework_img_v = '?v=20261121'; // bump when the screenshots are replaced
 $framework_terms = home_url( '/terms/#sms' );
 $framework_priv  = home_url( '/privacy/#text-messages' );
 ?>
@@ -38,15 +39,15 @@ $framework_priv  = home_url( '/privacy/#text-messages' );
                         <h2 id="consent">Consent recorded by the business</h2>
                         <p>A business can also mark a client as agreeing to texts in Framework, but only after the client agrees by phone or in person. The setting is off for every client until someone turns it on.</p>
                         <figure class="c-sms__shot">
-                            <img src="<?php echo esc_url( $framework_img . 'consent-switch-off.png' ); ?>" width="840" height="257" alt="A client's settings in Framework. &quot;Agreed to text messages&quot; is off, with the note: Turn on only after they agree, by phone or in person." loading="lazy">
-                            <figcaption>On each client's page, &quot;Agreed to text messages&quot; is off until the business turns it on.</figcaption>
+                            <img src="<?php echo esc_url( $framework_img . 'consent-switch-off.png' . $framework_img_v ); ?>" width="840" height="257" alt="A client's Messages settings in Framework. &quot;Text updates&quot; is off, with the note: Only turn on if the client said yes, by phone or in person." loading="lazy">
+                            <figcaption>On each client's page, &quot;Text updates&quot; is off until the business turns it on.</figcaption>
                         </figure>
                         <figure class="c-sms__shot c-sms__shot--narrow">
-                            <img src="<?php echo esc_url( $framework_img . 'consent-confirm-prompt.png' ); ?>" width="520" height="337" alt="A prompt titled &quot;Did they agree to texts?&quot; asking staff to confirm the client said yes by phone or in person, with Cancel and They agreed buttons." loading="lazy">
+                            <img src="<?php echo esc_url( $framework_img . 'consent-confirm-prompt.png' . $framework_img_v ); ?>" width="520" height="337" alt="A prompt titled &quot;Did they agree to texts?&quot; asking staff to confirm the client said yes by phone or in person, with Cancel and They agreed buttons." loading="lazy">
                             <figcaption>Turning it on asks staff to confirm the client said yes. Nothing is recorded if they cancel.</figcaption>
                         </figure>
                         <figure class="c-sms__shot">
-                            <img src="<?php echo esc_url( $framework_img . 'consent-recorded.png' ); ?>" width="840" height="277" alt="The same setting turned on: Since Oct 14, 2026, recorded by the office (Morgan Hale)." loading="lazy">
+                            <img src="<?php echo esc_url( $framework_img . 'consent-recorded.png' . $framework_img_v ); ?>" width="840" height="277" alt="The same setting turned on: Agreed Nov 14, 2026, recorded by Morgan Hale." loading="lazy">
                             <figcaption>Framework records when and how consent was given: on the request form, or by which staff member.</figcaption>
                         </figure>
                         <p>Changing a client's phone number removes their consent until they agree again for the new number. A business can't turn texts back on for anyone who replied STOP.</p>
