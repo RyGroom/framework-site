@@ -4,14 +4,16 @@
  * names Turnstile and links Cloudflare's Turnstile Privacy Addendum, which
  * Cloudflare requires as a condition of using Turnstile's invisible mode
  * (the app's public request form uses Turnstile). "Last updated" moves to
- * November 23, 2026.
+ * November 23, 2026, from whatever date it showed (the live page said
+ * November 9, the local copy November 10).
  *
  * Run with WP-CLI from the WordPress root:
  *   wp eval-file wp-content/themes/framework/tools/privacy-turnstile-2026-11.php           (dry run)
  *   wp eval-file wp-content/themes/framework/tools/privacy-turnstile-2026-11.php apply     (make the change)
  *
- * Only the exact old row and date are replaced, so a policy edited since is
- * left alone (and reported). Safe to run twice.
+ * The Cloudflare row must still be the exact old text, so a policy edited
+ * there since is left alone (and reported); the "Last updated" date is
+ * replaced whatever it says. Safe to run twice.
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -28,8 +30,9 @@ $new_row = "<tr>\n<td>Cloudflare (Turnstile)</td>\n<td>Blocking spam and bots on
     . '<a href="https://www.cloudflare.com/turnstile-privacy-policy/" target="_blank" rel="noopener">Turnstile Privacy Addendum</a>.'
     . "</td>\n</tr>";
 
-$old_date = '<p>Last updated: November 10, 2026</p>';
-$new_date = '<p>Last updated: November 23, 2026</p>';
+// Any "Last updated: <Month> <day>, <year>" paragraph.
+$date_pattern = '#<p>Last updated: [A-Z][a-z]+ \d{1,2}, \d{4}</p>#';
+$new_date     = '<p>Last updated: November 23, 2026</p>';
 
 $pages = get_posts( [ 'post_type' => 'page', 'name' => 'privacy', 'post_status' => [ 'publish', 'private', 'draft' ], 'numberposts' => 1 ] );
 if ( ! $pages ) {
@@ -49,11 +52,11 @@ if ( ! str_contains( $normalized, $old_row ) ) {
 }
 
 $updated = str_replace( $old_row, $new_row, $normalized );
-$dated   = str_contains( $updated, $old_date );
-$updated = str_replace( $old_date, $new_date, $updated );
+$was     = preg_match( $date_pattern, $updated, $m ) ? strip_tags( $m[0] ) : null;
+$updated = preg_replace( $date_pattern, $new_date, $updated, 1 );
 
 WP_CLI::log( '  Cloudflare row: names Turnstile and links the addendum' );
-WP_CLI::log( $dated ? '  Last updated: November 10 → November 23, 2026' : '  Last updated: not the expected date, left as is' );
+WP_CLI::log( $was ? '  ' . $was . ' → November 23, 2026' : '  No "Last updated" line found, left as is' );
 
 if ( ! $apply ) {
     WP_CLI::log( 'Dry run. Add "apply" to make the change.' );
