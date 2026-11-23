@@ -30,9 +30,11 @@ $new_row = "<tr>\n<td>Cloudflare (Turnstile)</td>\n<td>Blocking spam and bots on
     . '<a href="https://www.cloudflare.com/turnstile-privacy-policy/" target="_blank" rel="noopener">Turnstile Privacy Addendum</a>.'
     . "</td>\n</tr>";
 
-// Any "Last updated: <Month> <day>, <year>" paragraph.
-$date_pattern = '#<p>Last updated: [A-Z][a-z]+ \d{1,2}, \d{4}</p>#';
-$new_date     = '<p>Last updated: November 23, 2026</p>';
+// Just the "Last updated: <Month> <day>, <year>" text, so whatever's around it
+// stays as it was: the live page stores it as bare text (WordPress adds the
+// <p> when it shows the page), the local copy inside <p> tags.
+$date_pattern = '#Last updated: [A-Z][a-z]+ \d{1,2}, \d{4}#';
+$new_date     = 'Last updated: November 23, 2026';
 
 $pages = get_posts( [ 'post_type' => 'page', 'name' => 'privacy', 'post_status' => [ 'publish', 'private', 'draft' ], 'numberposts' => 1 ] );
 if ( ! $pages ) {
@@ -52,7 +54,7 @@ if ( ! str_contains( $normalized, $old_row ) ) {
 }
 
 $updated = str_replace( $old_row, $new_row, $normalized );
-$was     = preg_match( $date_pattern, $updated, $m ) ? strip_tags( $m[0] ) : null;
+$was     = preg_match( $date_pattern, $updated, $m ) ? $m[0] : null;
 $updated = preg_replace( $date_pattern, $new_date, $updated, 1 );
 
 WP_CLI::log( '  Cloudflare row: names Turnstile and links the addendum' );
